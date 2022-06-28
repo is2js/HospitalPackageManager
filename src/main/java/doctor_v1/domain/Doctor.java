@@ -38,4 +38,8 @@ public class Doctor {
         //몇번 이상 진료내역있는 회원인지 검증하고 줘도 될 듯?
         patient.setCoupon(new Coupon(this));
     }
+
+    public Long getFee() {
+        return fee;
+    }
 }

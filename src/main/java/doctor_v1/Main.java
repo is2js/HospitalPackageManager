@@ -8,8 +8,10 @@ import doctor_v1.domain.Reception;
 public class Main {
     public static void main(String[] args) {
         // 주체 객체들 생성 ====================
-        //1. 패키지를 만들 의사 생성 -> 상태값으로 돈을 가짐(Reception에게 떼어줄 커미션 제외 돈 벌어야함.)
-        final Doctor doctor = new Doctor(0L);
+        //1. 패키지를 만들 의사 생성 -> 상태값으로 돈을 가짐(Reception에게 떼어줄 커미션 제외 돈 벌어야함.ㄴㄴ)
+        // ---> 상태값으로 가지는 값은, doctor의 돈이 아니라, doctor가 발행할 package의 1개당 가격이다.
+        // ---> 돈은 일단 reception만 벌게 한다.
+        final Doctor doctor = new Doctor(1000L);
 
         //2. 패키지를 구매할 환자 생성 -> 상태값으로 돈을 가짐(돈을 씀.)
         final Patient patient1 = new Patient(5000L);
@@ -47,9 +49,9 @@ public class Main {
         // --> condinator와는 상위도메인(1)이 하위도메인 정보(N)를 저장하지 않고, 하위가 필드에 저장한 뒤 하위에서 활용한다.
 
         // 비지니스로직 ====================
-//        // 1. 거래에서 을인, 환자가 먼저 [구매기능]으로 판매자 코디네이터에게 거래를 건다.
-//        patient1.butPackage(codinator1);
-//        patient2.butPackage(codinator2);
+        // 1. 거래에서 을인, 환자가 먼저 [구매기능]으로 판매자 코디네이터에게 거래를 건다.
+        patient1.buyPackage(coordinator1);
+        patient2.buyPackage(coordinator2);
 //
 //        // 2. doctor는 발행권자(정보전문가)로서 환자를 검증대상으로 받아, 산 패키지를 검증한다.
 //        final boolean isValid1 = doctor.validatePackage(patient1);
