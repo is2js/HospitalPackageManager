@@ -54,10 +54,10 @@ public class Main {
         patient2.buyPackage(coordinator2);
 //
 //        // 2. doctor는 발행권자(정보전문가)로서 환자를 검증대상으로 받아, 산 패키지를 검증한다.
-//        final boolean isValid1 = doctor.validatePackage(patient1);
-//        final boolean isValid2 = doctor.validatePackage(patient2);
-//
-//        System.out.println("isValid1 = " + isValid1);
-//        System.out.println("isValid2 = " + isValid2);
+        final boolean isValid1 = doctor.validatePackage(patient1);
+        final boolean isValid2 = doctor.validatePackage(patient2);
+
+        System.out.println("isValid1 = " + isValid1);
+        System.out.println("isValid2 = " + isValid2);
     }
 }

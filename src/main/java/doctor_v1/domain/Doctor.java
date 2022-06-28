@@ -42,4 +42,11 @@ public class Doctor {
     public Long getFee() {
         return fee;
     }
+
+    public boolean validatePackage(final Patient patient) {
+        final Package packageItem = patient.getPackage();
+        // package가 내부에 발행Doctor를 필드 품고 있으므로 물어보고 꺼내서 하는 것보다는
+        // 현재 doctor를 this로 넘기면서 직접 검증기능을 위임해서 시킨다.
+        return packageItem.isValid(this);
+    }
 }
