@@ -19,4 +19,8 @@ public class Doctor {
     public void setReceptions(final Reception... receptions) {
         this.receptions.addAll(Arrays.asList(receptions));
     }
+
+    public Set<Reception> getReceptions() {
+        return receptions;
+    }
 }
