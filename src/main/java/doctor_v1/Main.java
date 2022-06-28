@@ -1,10 +1,15 @@
 package doctor_v1;
 
+import doctor_v1.domain.Coordinator;
+import doctor_v1.domain.Doctor;
+import doctor_v1.domain.Patient;
+import doctor_v1.domain.Reception;
+
 public class Main {
     public static void main(String[] args) {
         // 주체 객체들 생성 ====================
         //1. 패키지를 만들 의사 생성 -> 상태값으로 돈을 가짐(Reception에게 떼어줄 커미션 제외 돈 벌어야함.)
-        final Doctor doctor = new Doctor(1000L);
+        final Doctor doctor = new Doctor(0L);
 
         //2. 패키지를 구매할 환자 생성 -> 상태값으로 돈을 가짐(돈을 씀.)
         final Patient patient1 = new Patient(5000L);
@@ -15,8 +20,8 @@ public class Main {
         final Reception reception2 = new Reception(0L);
 
         //4. Reception 하위로 들어갈 프리랜서 코디네이터 생성 -> 돈 필요없이 판매만, 나중에 챙겨줌.
-        final Codinator codinator1 = new Codinator();
-        final Codinator codinator2 = new Codinator();
+        final Coordinator coordinator1 = new Coordinator();
+        final Coordinator coordinator2 = new Coordinator();
 
         // 객체들끼리 협력 ====================
         // 1. doctor는 같이 일할 협력 원무과직원들을 내부에 저장한다. by 받기기능
@@ -30,8 +35,8 @@ public class Main {
         // 3. doctor는 일부환자들에게 내부발행된 공짜쿠폰도 준다.
         doctor.setCoupon(patient1);
         // 4. 코디네이터는 원하는 원무과에 들어간다(상위 소속기관으로 박는다)
-        codinator1.setReception(reception1);
-        codinator2.setReception(reception2);
+        coordinator1.setReception(reception1);
+        coordinator2.setReception(reception2);
         // 5. 원무과는 직접적으로 다른 객체와 협력하진 않는다.
         // -> (1) doctor는 검증하기 위해 reception을 받아 저장만 한다. -> 협력완료
         // -> (2) codinator는 하위도메인으로서 상위소속기관인 reception을 정해서 받는다. -> 협력완료
