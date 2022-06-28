@@ -37,16 +37,16 @@ public class Main {
         // 3. doctor는 일부환자들에게 내부발행된 공짜쿠폰도 준다.
         doctor.setCoupon(patient2);
         // 4. 코디네이터는 원하는 원무과에 들어간다(상위 소속기관으로 박는다)
-//        coordinator1.setReception(reception1);
-//        coordinator2.setReception(reception2);
-//        // 5. 원무과는 직접적으로 다른 객체와 협력하진 않는다.
-//        // -> (1) doctor는 검증하기 위해 reception을 받아 저장만 한다. -> 협력완료
-//        // -> (2) codinator는 하위도메인으로서 상위소속기관인 reception을 정해서 받는다. -> 협력완료
-//        // -> reception은 중개자로서 실질적인 협력관계를 맺지 않는다.
-//        // --> doctor와는 동등한 입장이지만, [데이터객체 발행기관]으로서 갑으로서, 강제로 협력당하고 있음.
-//        // --> condinator와는 상위도메인(1)이 하위도메인 정보(N)를 저장하지 않고, 하위가 필드에 저장한 뒤 하위에서 활용한다.
-//
-//        // 비지니스로직 ====================
+        coordinator1.setReception(reception1);
+        coordinator2.setReception(reception2);
+        // 5. 원무과는 직접적으로 다른 객체와 협력하진 않는다.
+        // -> (1) doctor는 검증하기 위해 reception을 받아 저장만 한다. -> 협력완료
+        // -> (2) codinator는 하위도메인으로서 상위소속기관인 reception을 정해서 받는다. -> 협력완료
+        // -> reception은 중개자로서 실질적인 협력관계를 맺지 않는다.
+        // --> doctor와는 동등한 입장이지만, [데이터객체 발행기관]으로서 갑으로서, 강제로 협력당하고 있음.
+        // --> condinator와는 상위도메인(1)이 하위도메인 정보(N)를 저장하지 않고, 하위가 필드에 저장한 뒤 하위에서 활용한다.
+
+        // 비지니스로직 ====================
 //        // 1. 거래에서 을인, 환자가 먼저 [구매기능]으로 판매자 코디네이터에게 거래를 건다.
 //        patient1.butPackage(codinator1);
 //        patient2.butPackage(codinator2);
