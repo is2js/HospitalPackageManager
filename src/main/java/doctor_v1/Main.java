@@ -18,6 +18,7 @@ public class Main {
         //3. 의사와 협력할 N:N(상하위X)관계의 Reception 생성 -> 상태값으로 돈을 가짐(커미션 떼가기)
         final Reception reception1 = new Reception(0L);
         final Reception reception2 = new Reception(0L);
+        final Reception reception3 = new Reception(0L);
 
         //4. Reception 하위로 들어갈 프리랜서 코디네이터 생성 -> 돈 필요없이 판매만, 나중에 챙겨줌.
         final Coordinator coordinator1 = new Coordinator();
@@ -25,8 +26,9 @@ public class Main {
 
         // 객체들끼리 협력 ====================
         // 1. doctor는 같이 일할 협력 원무과직원들을 내부에 저장한다. by 받기기능
-        doctor.setReceptions(reception1);
-        doctor.setReceptions(reception2);
+        doctor.setReception(reception1);
+        doctor.setReceptions(reception2, reception3);
+
         // 2. doctor는 협력대상 원무과 직원들에게, 내부에서 발행한 package를 준다. by 직접주기기능
         // -> 내부발행할 package 갯수를 정해놓고 직접준다.
         // -> 직접주기기능에 사용되려면, 원무과 직원들은 내부 받기기능이 있어야한다.
