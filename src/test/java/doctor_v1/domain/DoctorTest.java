@@ -48,4 +48,16 @@ class DoctorTest {
 
         assertThat(actual).hasSize(3);
     }
+
+    @DisplayName("")
+    @Test
+    void setCoupon() {
+        final Doctor doctor = new Doctor(0L);
+        final Patient patient = new Patient(0L);
+
+        doctor.setCoupon(patient);
+        final Coupon actual = patient.getCoupon();
+
+        assertThat(actual).isNotEqualTo(Coupon.EMPTY);
+    }
 }
