@@ -1,4 +1,4 @@
-package doctor_v1.domain;
+package doctor_v2.domain;
 
 public class Coordinator {
     private Reception reception;

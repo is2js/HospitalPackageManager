@@ -1,4 +1,4 @@
-package doctor_v1.domain;
+package doctor_v2.domain;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,7 +8,7 @@ public class Doctor {
     private final Long fee;
     private final Set<Reception> receptions = new HashSet<>();
 
-    public Doctor(final Long fee) {
+    public Doctor(final Money amount) {
         this.fee = fee;
     }
 
