@@ -1,8 +1,9 @@
 package doctor_v2.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
+import doctor_v2.vo.Money;
 import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +14,7 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void setReception() {
-        final Doctor doctor = new Doctor(0L);
+        final Doctor doctor = new Doctor(Money.of(0.0));
         final Reception reception = new Reception(0L);
 
         doctor.setReception(reception);
@@ -25,7 +26,7 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void setReceptions() {
-        final Doctor doctor = new Doctor(0L);
+        final Doctor doctor = new Doctor(Money.of(0.0));
         final Reception reception1 = new Reception(0L);
         final Reception reception2 = new Reception(0L);
 
@@ -38,7 +39,7 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void setPackage() {
-        final Doctor doctor = new Doctor(0L);
+        final Doctor doctor = new Doctor(Money.of(0.0));
         final Reception reception = new Reception(0L);
 
         doctor.setReception(reception);
@@ -52,7 +53,7 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void setCoupon() {
-        final Doctor doctor = new Doctor(0L);
+        final Doctor doctor = new Doctor(Money.of(0.0));
         final Patient patient = new Patient(0L);
 
         doctor.setCoupon(patient);
@@ -64,7 +65,7 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void validatePackage() {
-        final Doctor doctor = new Doctor(1000L);
+        final Doctor doctor = new Doctor(Money.of(1000.0));
 
         final Patient 오천원_환자 = new Patient(5000L);
         final Patient 오백원_환자 = new Patient(500L);

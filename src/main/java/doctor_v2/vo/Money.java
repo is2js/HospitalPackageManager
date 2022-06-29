@@ -4,7 +4,7 @@ public class Money {
 
     private final Double money;
 
-    public Money(final Double money) {
+    private Money(final Double money) {
         this.money = money;
     }
 

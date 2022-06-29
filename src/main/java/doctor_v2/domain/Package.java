@@ -12,9 +12,9 @@ public class Package {
         this.doctor = doctor;
     }
 
-    public Long getFee() {
-        return this.doctor.getFee();
-    }
+//    public Long getFee() {
+//        return this.doctor.getFee();
+//    }
 
     public boolean isValid(final Doctor doctor) {
         // 1회성 객체은 ON/OFF되는 객체처럼, flag변수를 가지며 검증에 포함된다.

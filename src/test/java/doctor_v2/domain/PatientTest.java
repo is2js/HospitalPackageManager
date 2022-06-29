@@ -2,6 +2,7 @@ package doctor_v2.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import doctor_v2.vo.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ class PatientTest {
         final Patient patient = new Patient(2000L);
         final Coordinator coordinator = new Coordinator();
         final Reception reception = new Reception(0L);
-        final Doctor doctor = new Doctor(1000L);
+        final Doctor doctor = new Doctor(Money.of(1000.0));
 
         doctor.setReceptions(reception);
 //        doctor.setCoupon();
@@ -33,7 +34,7 @@ class PatientTest {
         final Patient patient = new Patient(0L);
         final Coordinator coordinator = new Coordinator();
         final Reception reception = new Reception(0L);
-        final Doctor doctor = new Doctor(1000L);
+        final Doctor doctor = new Doctor(Money.of(1000.0));
 
         doctor.setReceptions(reception);
         doctor.setCoupon(patient);

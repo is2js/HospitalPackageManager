@@ -1,15 +1,16 @@
 package doctor_v2.domain;
 
+import doctor_v2.vo.Money;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Doctor {
-    private final Long fee;
+    private final Money amount;
     private final Set<Reception> receptions = new HashSet<>();
 
     public Doctor(final Money amount) {
-        this.fee = fee;
+        this.amount = amount;
     }
 
     public void setReception(final Reception reception) {
@@ -39,9 +40,9 @@ public class Doctor {
         patient.setCoupon(new Coupon(this));
     }
 
-    public Long getFee() {
-        return fee;
-    }
+//    public Long getFee() {
+//        return fee;
+//    }
 
     public boolean validatePackage(final Patient patient) {
         final Package packageItem = patient.getPackage();

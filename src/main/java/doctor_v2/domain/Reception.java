@@ -37,7 +37,8 @@ public class Reception {
             return 0L;
         }
 
-        return packages.get(0).getFee();
+//        return packages.get(0).getFee();
+        return null;
     }
 
     public Package getPackageWithFee() {
@@ -46,7 +47,7 @@ public class Reception {
         }
 
         final Package packageItem = packages.remove(0);
-        fee += packageItem.getFee();
+//        fee += packageItem.getFee();
 
         return packageItem;
     }
