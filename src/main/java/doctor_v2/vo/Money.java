@@ -33,4 +33,25 @@ public class Money {
     public Money minus(final Long fee) {
         return new Money(money - fee);
     }
+
+    public Money multi(final Count count) {
+        return new Money(money * count.getValue());
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Money money1 = (Money) o;
+        return Objects.equals(money, money1.money);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(money);
+    }
 }

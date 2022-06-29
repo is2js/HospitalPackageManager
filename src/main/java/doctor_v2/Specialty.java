@@ -1,5 +1,7 @@
 package doctor_v2;
 
+import doctor_v2.domain.Treatment;
+import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
 import doctor_v2.vo.Title;
 import java.time.Duration;
@@ -21,5 +23,9 @@ public class Specialty {
         this.duration = duration;
         this.fee = fee;
         this.createDate = createDate;
+    }
+
+    public Money calculateFee(final Treatment treatment, final Count count) {
+        return fee.multi(count);
     }
 }
