@@ -45,8 +45,8 @@ public class Main {
             doctor.addTreatment(
                 specialty,
                 new Treatment(Sequence.of(seq),
-                    Description.of(String.format("%d번째 패키지", seq)),
-                    Count.of(10L))
+                    Title.of(String.format("%dth 제목", seq)),
+                    Description.of(String.format("%d번째 패키지", seq)), Count.of(10L))
             );
         }
 
