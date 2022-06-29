@@ -60,4 +60,11 @@ public class Doctor {
         specialties.put(specialty, new HashSet<>());
         return true;
     }
+
+    public boolean addTreatment(final Specialty specialty, final Treatment treatment) {
+        if (!specialties.containsKey(specialty)) {
+            return false;
+        }
+        return specialties.get(specialty).add(treatment);
+    }
 }
