@@ -6,7 +6,7 @@ import doctor_v2.vo.Sequence;
 import doctor_v2.vo.Title;
 
 public class Treatment {
-    
+
     private final Sequence sequence;
     private final Title title;
     private final Description description;

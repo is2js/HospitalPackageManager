@@ -1,6 +1,9 @@
 package doctor_v2.vo;
 
+import java.util.Objects;
+
 public class Title {
+
     private final String title;
 
     public Title(final String title) {
@@ -12,5 +15,22 @@ public class Title {
             throw new IllegalArgumentException("[ERROR] 제목은 2글자 이상이어야합니다.");
         }
         return new Title(title);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Title title1 = (Title) o;
+        return Objects.equals(title, title1.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
     }
 }
