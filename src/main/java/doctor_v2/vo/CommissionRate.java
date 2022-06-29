@@ -3,8 +3,7 @@ package doctor_v2.vo;
 public class CommissionRate {
     private final Double commissionRate;
 
-    public CommissionRate(final Double commissionRate) {
-
+    private CommissionRate(final Double commissionRate) {
         this.commissionRate = commissionRate;
     }
 

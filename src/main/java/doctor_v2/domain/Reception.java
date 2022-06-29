@@ -1,13 +1,17 @@
 package doctor_v2.domain;
 
+import doctor_v2.vo.CommissionRate;
 import doctor_v2.vo.Money;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Reception {
     private final Money amount;
 
     private List<Package> packages = new ArrayList<>();
+    private Map<Doctor, CommissionRate> doctors = new HashMap<>();
 
     public Reception(final Money amount) {
         this.amount = amount;
@@ -51,5 +55,26 @@ public class Reception {
 //        fee += packageItem.getFee();
 
         return packageItem;
+    }
+
+    public boolean contract(final Doctor doctor, final CommissionRate commissionRate) {
+        if (doctors.containsKey(doctor)){
+            return false;
+        }
+        doctors.put(doctor, commissionRate);
+        return true;
+    }
+
+    public boolean cancelContract(final Doctor doctor) {
+        if (!doctors.containsKey(doctor)) {
+            return false;
+        }
+
+        doctors.remove(doctor);
+        return true;
+    }
+
+    public Map<Doctor, CommissionRate> getDoctors() {
+        return doctors;
     }
 }

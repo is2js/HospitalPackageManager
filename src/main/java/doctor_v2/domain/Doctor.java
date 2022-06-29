@@ -1,6 +1,7 @@
 package doctor_v2.domain;
 
 import doctor_v2.Specialty;
+import doctor_v2.vo.CommissionRate;
 import doctor_v2.vo.Money;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,5 +67,22 @@ public class Doctor {
             return false;
         }
         return specialties.get(specialty).add(treatment);
+    }
+
+    public boolean contract(final Reception reception, final CommissionRate commissionRate) {
+        if (!reception.contract(this, commissionRate)) {
+            return false;
+        }
+
+        return this.receptions.add(reception);
+    }
+
+
+    public boolean cancelContract(final Reception reception) {
+        if (!reception.cancelContract(this) || !this.receptions.contains(reception) ){
+            return false;
+        }
+
+        return receptions.remove(reception);
     }
 }

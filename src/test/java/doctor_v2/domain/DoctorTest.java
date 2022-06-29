@@ -3,6 +3,7 @@ package doctor_v2.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import doctor_v2.vo.CommissionRate;
 import doctor_v2.vo.Money;
 import java.util.List;
 import java.util.Set;
@@ -96,6 +97,43 @@ class DoctorTest {
             () -> assertThat(isValid_오백원_환자).isFalse(),
             () -> assertThat(isValid_영원_환자).isFalse(),
             () -> assertThat(isValid_영원_쿠폰_환자).isTrue()
+        );
+    }
+
+    @DisplayName("")
+    @Test
+    void contract() {
+        final Doctor doctor = new Doctor(Money.of(0.0));
+        final Reception reception1 = new Reception(Money.of(0.0));
+        final Reception reception2 = new Reception(Money.of(0.0));
+        final CommissionRate commisionRate = CommissionRate.of(10.0);
+        doctor.contract(reception1, commisionRate);
+        doctor.contract(reception2, commisionRate);
+
+
+        assertAll(
+            () -> assertThat(doctor.getReceptions()).hasSize(2),
+            () -> assertThat(reception1.getDoctors()).hasSize(1),
+            () -> assertThat(reception2.getDoctors()).hasSize(1)
+        );
+    }
+
+    @DisplayName("")
+    @Test
+    void cancelContract() {
+        final Doctor doctor = new Doctor(Money.of(0.0));
+        final Reception reception1 = new Reception(Money.of(0.0));
+        final Reception reception2 = new Reception(Money.of(0.0));
+        final CommissionRate commisionRate = CommissionRate.of(10.0);
+        doctor.contract(reception1, commisionRate);
+        doctor.contract(reception2, commisionRate);
+        doctor.cancelContract(reception1);
+
+
+        assertAll(
+            () -> assertThat(doctor.getReceptions()).hasSize(1),
+            () -> assertThat(reception1.getDoctors()).isEmpty(),
+            () -> assertThat(reception2.getDoctors()).hasSize(1)
         );
     }
 }

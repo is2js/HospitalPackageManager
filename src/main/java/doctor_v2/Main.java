@@ -3,6 +3,7 @@ package doctor_v2;
 import doctor_v2.domain.Doctor;
 import doctor_v2.domain.Reception;
 import doctor_v2.domain.Treatment;
+import doctor_v2.vo.CommissionRate;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Description;
 import doctor_v2.vo.Money;
@@ -48,7 +49,8 @@ public class Main {
         // reception ===========================================
         final Reception reception = new Reception(Money.of(0.0));
         // doctor가 먼저, 계약조건(수수료율)협력 계약을 제안한다.
-//        doctor.contract(reception, CommisionRate.of(10.0));
+        doctor.contract(reception, CommissionRate.of(10.0));
+        doctor.cancelContract(reception);
 //
 //        // Coordinator ===========================================
 //        final Coordinator coordinator = new Coordinator();
