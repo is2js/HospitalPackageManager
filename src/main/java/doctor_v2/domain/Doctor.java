@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class Doctor {
+    private static final Set<Treatment> EMPTY = new HashSet<>();
     private final Money amount;
     private final Set<Reception> receptions = new HashSet<>();
     private Map<Specialty, Set<Treatment>> specialties = new HashMap<>();
@@ -84,5 +85,14 @@ public class Doctor {
         }
 
         return receptions.remove(reception);
+    }
+
+    public Set<Treatment> getTreatments(final Specialty specialty) {
+        //READ로서 조회 전 상위도메인 존재 && 하위도메인(조회데이터)의 존재검증
+        // A && B -> not A  || not B early return
+        if (!specialties.containsKey(specialty) || specialties.get(specialty).isEmpty()) {
+            return EMPTY;
+        }
+        return specialties.get(specialty);
     }
 }

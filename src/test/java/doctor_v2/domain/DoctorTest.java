@@ -1,5 +1,8 @@
 package doctor_v2.domain;
 
+import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사;
+import static doctor_v2.fixture.Fixture.TREATMENT_두번째;
+import static doctor_v2.fixture.Fixture.TREATMENT_첫번째;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -135,5 +138,19 @@ class DoctorTest {
             () -> assertThat(reception1.getDoctors()).isEmpty(),
             () -> assertThat(reception2.getDoctors()).hasSize(1)
         );
+    }
+
+    @DisplayName("")
+    @Test
+    void getTreatments() {
+
+        final Doctor doctor = new Doctor(Money.of(0.0));
+        doctor.addSpecialty(SPECIALTY_구안와사);
+        doctor.addTreatment(SPECIALTY_구안와사, TREATMENT_첫번째);
+        doctor.addTreatment(SPECIALTY_구안와사, TREATMENT_두번째);
+
+        final Set<Treatment> actual = doctor.getTreatments(SPECIALTY_구안와사);
+
+        assertThat(actual).hasSize(2);
     }
 }

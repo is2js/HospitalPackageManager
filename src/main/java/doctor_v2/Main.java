@@ -44,7 +44,9 @@ public class Main {
         for (Long seq = 1L; seq <6L; seq++) {
             doctor.addTreatment(
                 specialty,
-                new Treatment(Sequence.of(seq), Description.of(String.format("%d번째 패키지", seq)), Count.of(10L))
+                new Treatment(Sequence.of(seq),
+                    Description.of(String.format("%d번째 패키지", seq)),
+                    Count.of(10L))
             );
         }
 
@@ -62,11 +64,11 @@ public class Main {
         final Patient patient = new Patient(Money.of(20000.0));
 
 
-//        // 비지니스 ===========================================
-//        // patient -> 선택한 doctor에 저장된 정보를 보고 선택 후 -> package 구매를 한다.
-//        // -> 선택을 ui에서 해주는 데, 현재는 없으므로 for + break로 첫번째 정보들만 선택한다고 가정한다.
-//        // --> 상위도메인을 통한 하위도메인들 전체조회만 하면, 정보가 다 나온다.
-//        for (Treatment treatment: doctor.getTreatments(specialty)) {
+        // 비지니스 ===========================================
+        // patient -> 선택한 doctor에 저장된 정보를 보고 선택 후 -> package 구매를 한다.
+        // -> 선택을 ui에서 해주는 데, 현재는 없으므로 for + break로 첫번째 정보들만 선택한다고 가정한다.
+        // --> 상위도메인을 통한 하위도메인들 전체조회만 하면, 정보가 다 나온다.
+        for (Treatment treatment: doctor.getTreatments(specialty)) {
 //
 //            //patient의 구매
 //            patient.buyPackage(coordinator,
@@ -77,6 +79,6 @@ public class Main {
 //            final boolean isValidPackage = doctor.validatePackage(patient, Count.of(2));
 //            System.out.println("isValidPackage = " + isValidPackage);
 //            break;
-//        }
+        }
     }
 }
