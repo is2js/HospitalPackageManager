@@ -55,7 +55,7 @@ class DoctorTest {
     @Test
     void setCoupon() {
         final Doctor doctor = new Doctor(Money.of(0.0));
-        final Patient patient = new Patient(0L);
+        final Patient patient = new Patient(Money.of(0.0));
 
         doctor.setCoupon(patient);
         final Coupon actual = patient.getCoupon();
@@ -68,10 +68,10 @@ class DoctorTest {
     void validatePackage() {
         final Doctor doctor = new Doctor(Money.of(1000.0));
 
-        final Patient 오천원_환자 = new Patient(5000L);
-        final Patient 오백원_환자 = new Patient(500L);
-        final Patient 영원_환자 = new Patient(0L);
-        final Patient 영원_쿠폰_환자 = new Patient(0L);
+        final Patient 오천원_환자 = new Patient(Money.of(5000.0));
+        final Patient 오백원_환자 = new Patient(Money.of(500.0));
+        final Patient 영원_환자 = new Patient(Money.of(0.0));
+        final Patient 영원_쿠폰_환자 = new Patient(Money.of(0.0));
 
         final Reception reception1 = new Reception(Money.of(0.0));
         final Coordinator coordinator1 = new Coordinator();

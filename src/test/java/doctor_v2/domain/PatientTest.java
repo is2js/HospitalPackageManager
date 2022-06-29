@@ -11,7 +11,7 @@ class PatientTest {
     @DisplayName("")
     @Test
     void buyPackage_with_no_coupon() {
-        final Patient patient = new Patient(2000L);
+        final Patient patient = new Patient(Money.of(2000.0));
         final Coordinator coordinator = new Coordinator();
         final Reception reception = new Reception(Money.of(0.0));
         final Doctor doctor = new Doctor(Money.of(1000.0));
@@ -31,7 +31,7 @@ class PatientTest {
     @DisplayName("")
     @Test
     void buyPackage_with_coupon_no_amount() {
-        final Patient patient = new Patient(0L);
+        final Patient patient = new Patient(Money.of(0.0));
         final Coordinator coordinator = new Coordinator();
         final Reception reception = new Reception(Money.of(0.0));
         final Doctor doctor = new Doctor(Money.of(1000.0));

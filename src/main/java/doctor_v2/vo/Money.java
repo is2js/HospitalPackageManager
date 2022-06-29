@@ -1,5 +1,7 @@
 package doctor_v2.vo;
 
+import java.util.Objects;
+
 public class Money {
 
     private final Double money;
@@ -14,5 +16,21 @@ public class Money {
         }
 
         return new Money(money);
+    }
+
+    public boolean isGreaterThan(final Long fee) {
+        return money > fee;
+    }
+
+    public boolean isEqualTo(final Long fee) {
+        return Objects.equals(money, fee);
+    }
+
+    public boolean isLessThan(final Long fee) {
+        return money < fee;
+    }
+
+    public Money minus(final Long fee) {
+        return new Money(money - fee);
     }
 }

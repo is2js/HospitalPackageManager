@@ -1,6 +1,8 @@
 package doctor_v2;
 
+import doctor_v2.domain.Coordinator;
 import doctor_v2.domain.Doctor;
+import doctor_v2.domain.Patient;
 import doctor_v2.domain.Reception;
 import doctor_v2.domain.Treatment;
 import doctor_v2.vo.CommissionRate;
@@ -49,18 +51,17 @@ public class Main {
         // reception ===========================================
         final Reception reception = new Reception(Money.of(0.0));
         // doctor가 먼저, 계약조건(수수료율)협력 계약을 제안한다.
-        doctor.contract(reception, CommissionRate.of(10.0));
-        doctor.cancelContract(reception);
-//
-//        // Coordinator ===========================================
-//        final Coordinator coordinator = new Coordinator();
-//        // 코디네이터가, 소속기관을 결정한다.
-//        coordinator.setReception(reception);
-//
-//        // Patient ===========================================
-//        final Patient patient = new Patient(Money.of(20000.0));
-//
-//
+        doctor.contract(reception, CommissionRate.of(10.0)); // doctor.cancelContract(reception);
+
+        // Coordinator ===========================================
+        final Coordinator coordinator = new Coordinator();
+        // 코디네이터가, 소속기관을 결정한다.
+        coordinator.setReception(reception);
+
+        // Patient ===========================================
+        final Patient patient = new Patient(Money.of(20000.0));
+
+
 //        // 비지니스 ===========================================
 //        // patient -> 선택한 doctor에 저장된 정보를 보고 선택 후 -> package 구매를 한다.
 //        // -> 선택을 ui에서 해주는 데, 현재는 없으므로 for + break로 첫번째 정보들만 선택한다고 가정한다.
