@@ -15,7 +15,7 @@ class DoctorTest {
     @Test
     void setReception() {
         final Doctor doctor = new Doctor(Money.of(0.0));
-        final Reception reception = new Reception(0L);
+        final Reception reception = new Reception(Money.of(0.0));
 
         doctor.setReception(reception);
         final Set<Reception> actual = doctor.getReceptions();
@@ -27,8 +27,8 @@ class DoctorTest {
     @Test
     void setReceptions() {
         final Doctor doctor = new Doctor(Money.of(0.0));
-        final Reception reception1 = new Reception(0L);
-        final Reception reception2 = new Reception(0L);
+        final Reception reception1 = new Reception(Money.of(0.0));
+        final Reception reception2 = new Reception(Money.of(0.0));
 
         doctor.setReceptions(reception1, reception2);
         final Set<Reception> actual = doctor.getReceptions();
@@ -40,7 +40,7 @@ class DoctorTest {
     @Test
     void setPackage() {
         final Doctor doctor = new Doctor(Money.of(0.0));
-        final Reception reception = new Reception(0L);
+        final Reception reception = new Reception(Money.of(0.0));
 
         doctor.setReception(reception);
 
@@ -72,7 +72,7 @@ class DoctorTest {
         final Patient 영원_환자 = new Patient(0L);
         final Patient 영원_쿠폰_환자 = new Patient(0L);
 
-        final Reception reception1 = new Reception(0L);
+        final Reception reception1 = new Reception(Money.of(0.0));
         final Coordinator coordinator1 = new Coordinator();
 
         doctor.setReception(reception1);

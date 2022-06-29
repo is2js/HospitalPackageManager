@@ -1,15 +1,16 @@
 package doctor_v2.domain;
 
+import doctor_v2.vo.Money;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Reception {
-    private Long fee;
+    private final Money amount;
 
     private List<Package> packages = new ArrayList<>();
 
-    public Reception(final Long fee) {
-        this.fee = fee;
+    public Reception(final Money amount) {
+        this.amount = amount;
     }
 
     public void addPackage(final Package packageItem) {

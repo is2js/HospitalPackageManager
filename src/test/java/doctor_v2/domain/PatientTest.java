@@ -13,7 +13,7 @@ class PatientTest {
     void buyPackage_with_no_coupon() {
         final Patient patient = new Patient(2000L);
         final Coordinator coordinator = new Coordinator();
-        final Reception reception = new Reception(0L);
+        final Reception reception = new Reception(Money.of(0.0));
         final Doctor doctor = new Doctor(Money.of(1000.0));
 
         doctor.setReceptions(reception);
@@ -33,7 +33,7 @@ class PatientTest {
     void buyPackage_with_coupon_no_amount() {
         final Patient patient = new Patient(0L);
         final Coordinator coordinator = new Coordinator();
-        final Reception reception = new Reception(0L);
+        final Reception reception = new Reception(Money.of(0.0));
         final Doctor doctor = new Doctor(Money.of(1000.0));
 
         doctor.setReceptions(reception);

@@ -1,7 +1,12 @@
 package doctor_v2;
 
 import doctor_v2.domain.Doctor;
+import doctor_v2.domain.Reception;
+import doctor_v2.domain.Treatment;
+import doctor_v2.vo.Count;
+import doctor_v2.vo.Description;
 import doctor_v2.vo.Money;
+import doctor_v2.vo.Sequence;
 import doctor_v2.vo.Title;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -33,15 +38,16 @@ public class Main {
 //        //     여러가지가 돌아가면, 상위를 바깥/하위를 안쪽 for문의 변수로 선언해서 바깥쪽부터 돌려가며 만들면 된다.
 //        doctor.addTreatment(specialty, treatment);
 //
-//        for (Long seq = 1L; seq <6L; seq++) {
-//            doctor.addTreatment(
-//                new Treatment(Sequence.of(seq), Description.of(String.format("%d번째 패키지", seq)), Count.of(10L))
-//            );
-//        }
-//
-//        // reception ===========================================
-//        final Reception reception = new Reception(Money.of(0.0));
-//        // doctor가 먼저, 계약조건(수수료율)협력 계약을 제안한다.
+        for (Long seq = 1L; seq <6L; seq++) {
+            doctor.addTreatment(
+                specialty,
+                new Treatment(Sequence.of(seq), Description.of(String.format("%d번째 패키지", seq)), Count.of(10L))
+            );
+        }
+
+        // reception ===========================================
+        final Reception reception = new Reception(Money.of(0.0));
+        // doctor가 먼저, 계약조건(수수료율)협력 계약을 제안한다.
 //        doctor.contract(reception, CommisionRate.of(10.0));
 //
 //        // Coordinator ===========================================
