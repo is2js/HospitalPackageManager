@@ -1,21 +1,27 @@
 package doctor_v2;
 
+import doctor_v2.domain.Doctor;
+import doctor_v2.vo.Money;
+import doctor_v2.vo.Title;
+import java.time.Duration;
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         // doctor ===========================================
         // doctor가 package당 가격(Long)을 가지고 있다가
         // -> 상태값으로 자본금을 가지며, 값객체 Money with Double를 이용하도록 변경
-//        final Doctor doctor = new Doctor(Money.of(100.0));
-//
-//        //package에 들어갈 필드로서 새로운 데이터객체 -> 미리 초기데이터 발행
-//        //할인정책을 가져 가격계산 책임도 가질 예정.
-//        Specialty specialty = new Specialty<AmountDiscount>( // 일정금액할인 vs 퍼센트할인을 정한다.
-//            Title.of("구안와사"),
-//            Duration.ofDays(60),
-//            Money.of(5000.0),
-//            LocalDate.of(2022, 06, 22), // 패키지 생성일
-//            new SequenceAmountDiscount(Money.of(1000.0), Sequence.of(1)) // 위에서 정해진 할인정책에 대한 정책조건을 앞에 명시한 구상체
-//        );
+        final Doctor doctor = new Doctor(Money.of(100.0));
+
+        //package에 들어갈 필드로서 새로운 데이터객체 -> 미리 초기데이터 발행
+        //할인정책을 가져 가격계산 책임도 가질 예정.
+        Specialty specialty = new Specialty( // <AmountDiscount>( // 일정금액할인 vs 퍼센트할인을 정한다.
+            Title.of("구안와사"),
+            Duration.ofDays(60),
+            Money.of(5000.0),
+            LocalDate.of(2022, 06, 22) // 패키지 생성일
+        );
+//            new SequenceAmountDiscount(Money.of(1000.0), Sequence.of(1L)) // 위에서 정해진 할인정책에 대한 정책조건을 앞에 명시한 구상체
 //        // doctor는 package발행에 필요한 데이터를 미리 받아저장하여 알고 있다.
 //        // -> 상위도메인이라서 먼저 단독key로 저장한다.
 //        doctor.addSpecialty(specialty);
