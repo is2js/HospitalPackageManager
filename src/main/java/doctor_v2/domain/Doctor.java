@@ -1,13 +1,17 @@
 package doctor_v2.domain;
 
+import doctor_v2.Specialty;
 import doctor_v2.vo.Money;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Doctor {
     private final Money amount;
     private final Set<Reception> receptions = new HashSet<>();
+    private Map<Specialty, Set<Treatment>> specialties = new HashMap<>();
 
     public Doctor(final Money amount) {
         this.amount = amount;
@@ -46,8 +50,14 @@ public class Doctor {
 
     public boolean validatePackage(final Patient patient) {
         final Package packageItem = patient.getPackage();
-        // package가 내부에 발행Doctor를 필드 품고 있으므로 물어보고 꺼내서 하는 것보다는
-        // 현재 doctor를 this로 넘기면서 직접 검증기능을 위임해서 시킨다.
         return packageItem.isValid(this);
+    }
+
+    public boolean addSpecialty(final Specialty specialty) {
+        if (specialties.containsKey(specialty)) {
+            return false;
+        }
+        specialties.put(specialty, new HashSet<>());
+        return true;
     }
 }
