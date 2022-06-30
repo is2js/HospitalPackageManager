@@ -18,20 +18,16 @@ public class Money {
         return new Money(money);
     }
 
-    public boolean isGreaterThan(final Long fee) {
-        return money > fee;
+    public boolean isGreaterThanOrEqualTo(final Money fee) {
+        return money >= fee.money;
     }
 
-    public boolean isEqualTo(final Long fee) {
-        return Objects.equals(money, fee);
+    public boolean isLessThan(final Money fee) {
+        return money < fee.money;
     }
 
-    public boolean isLessThan(final Long fee) {
-        return money < fee;
-    }
-
-    public Money minus(final Long fee) {
-        return new Money(money - fee);
+    public Money minus(final Money fee) {
+        return new Money(money - fee.money);
     }
 
     public Money multi(Count count) {
@@ -41,6 +37,14 @@ public class Money {
             count = count.decrease();
         }
         return new Money(sum);
+    }
+
+    public Money multiRate(final CommissionRate commissionRate) {
+        return new Money(commissionRate.calculateCommission(money));
+    }
+
+    public Money plus(final Money money) {
+        return new Money(this.money + money.money);
     }
 
     @Override
