@@ -37,6 +37,11 @@ public class Fixture {
         Title.of(String.format("%dth 제목", 2L)),
         Description.of(String.format("%d번째 패키지", 2L)),
         Count.of(10L));
+    public static final Treatment TREATMENT_두번째_9개 = new Treatment(
+        Sequence.of(2L),
+        Title.of(String.format("%dth 제목", 2L)),
+        Description.of(String.format("%d번째 패키지", 2L)),
+        Count.of(9L));
     public static final Doctor DOCTOR_0원 = new Doctor(Money.of(0.0));
     public static final Reception RECEPTION_1 = new Reception(Money.of(0.0));
     public static final Reception RECEPTION_2 = new Reception(Money.of(0.0));

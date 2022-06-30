@@ -4,12 +4,14 @@ import static doctor_v2.fixture.Fixture.DOCTOR_0원;
 import static doctor_v2.fixture.Fixture.RECEPTION_1;
 import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원;
 import static doctor_v2.fixture.Fixture.TREATMENT_두번째_10개;
+import static doctor_v2.fixture.Fixture.TREATMENT_두번째_9개;
 import static doctor_v2.fixture.Fixture.TREATMENT_첫번째_10개;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import doctor_v2.fixture.Fixture;
 import doctor_v2.vo.CommissionRate;
+import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
 import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
@@ -65,43 +67,6 @@ class DoctorTest {
         final Coupon actual = patient.getCoupon();
 
         assertThat(actual).isNotEqualTo(Coupon.EMPTY);
-    }
-
-    @DisplayName("")
-    @Test
-    void validatePackage() {
-        final Doctor doctor = new Doctor(Money.of(1000.0));
-
-        final Patient 오천원_환자 = new Patient(Money.of(5000.0));
-        final Patient 오백원_환자 = new Patient(Money.of(500.0));
-        final Patient 영원_환자 = new Patient(Money.of(0.0));
-        final Patient 영원_쿠폰_환자 = new Patient(Money.of(0.0));
-
-        final Reception reception1 = RECEPTION_1;
-        final Coordinator coordinator1 = new Coordinator();
-
-        doctor.setReception(reception1);
-//        doctor.setPackage(reception1, 4L);
-        doctor.setCoupon(영원_쿠폰_환자);
-
-        coordinator1.setReception(reception1);
-
-//        오천원_환자.buyPackage(coordinator1, doctor, specialty, treatment, Count.of(2L));
-//        오백원_환자.buyPackage(coordinator1, doctor, specialty, treatment, Count.of(2L));
-//        영원_환자.buyPackage(coordinator1, doctor, specialty, treatment, Count.of(2L));
-//        영원_쿠폰_환자.buyPackage(coordinator1, doctor, specialty, treatment, Count.of(2L));
-
-        final boolean isValid_오천원_환자 = doctor.validatePackage(오천원_환자);
-        final boolean isValid_오백원_환자 = doctor.validatePackage(오백원_환자);
-        final boolean isValid_영원_환자 = doctor.validatePackage(영원_환자);
-        final boolean isValid_영원_쿠폰_환자 = doctor.validatePackage(영원_쿠폰_환자);
-
-        assertAll(
-            () -> assertThat(isValid_오천원_환자).isTrue(),
-            () -> assertThat(isValid_오백원_환자).isFalse(),
-            () -> assertThat(isValid_영원_환자).isFalse(),
-            () -> assertThat(isValid_영원_쿠폰_환자).isTrue()
-        );
     }
 
     @DisplayName("")
@@ -173,5 +138,20 @@ class DoctorTest {
 
         assertThat(DOCTOR_0원).extracting("amount")
             .isEqualTo(Money.of(10000.0));
+    }
+
+    @DisplayName("")
+    @Test
+    void sellPackage() {
+        DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_9개);
+        final Package actual = DOCTOR_0원.sellPackage(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개, Count.of(1L));
+        final Package expected = new Package(DOCTOR_0원, SPECIALTY_구안와사_5000원, TREATMENT_두번째_9개, Count.of(1L));
+
+        assertAll(
+          () -> assertThat(actual).isEqualTo(expected),
+          () -> TREATMENT_두번째_10개.hasCount(Count.of(9L))
+        );
     }
 }
