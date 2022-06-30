@@ -2,6 +2,7 @@ package doctor_v2.domain;
 
 import static doctor_v2.fixture.Fixture.DOCTOR_0원;
 import static doctor_v2.fixture.Fixture.RECEPTION_1;
+import static doctor_v2.fixture.Fixture.RECEPTION_2;
 import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원;
 import static doctor_v2.fixture.Fixture.TREATMENT_두번째_10개;
 import static doctor_v2.fixture.Fixture.TREATMENT_두번째_9개;
@@ -9,10 +10,10 @@ import static doctor_v2.fixture.Fixture.TREATMENT_첫번째_10개;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import doctor_v2.fixture.Fixture;
 import doctor_v2.vo.CommissionRate;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
+import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,7 @@ class DoctorTest {
     void setReceptions() {
         final Doctor doctor = DOCTOR_0원;
         final Reception reception1 = RECEPTION_1;
-        final Reception reception2 = Fixture.RECEPTION_2;
+        final Reception reception2 = RECEPTION_2;
 
         doctor.setReceptions(reception1, reception2);
         final Set<Reception> actual = doctor.getReceptions();
@@ -63,10 +64,10 @@ class DoctorTest {
         final Doctor doctor = DOCTOR_0원;
         final Patient patient = new Patient(Money.of(0.0));
 
-        doctor.setCoupon(patient);
-        final Coupon actual = patient.getCoupon();
+        doctor.setCoupons(patient, Count.of(1L));
+        final List<Coupon> actual = patient.getCoupons();
 
-        assertThat(actual).isNotEqualTo(Coupon.EMPTY);
+        assertThat(actual).isNotEmpty();
     }
 
     @DisplayName("")
@@ -74,10 +75,10 @@ class DoctorTest {
     void contract() {
         final Doctor doctor = DOCTOR_0원;
         final Reception reception1 = RECEPTION_1;
-        final Reception reception2 = Fixture.RECEPTION_2;
-        final CommissionRate commisionRate = CommissionRate.of(10.0);
-        doctor.contract(reception1, commisionRate);
-        doctor.contract(reception2, commisionRate);
+        final Reception reception2 = RECEPTION_2;
+        final CommissionRate commissionRate = CommissionRate.of(10.0);
+        doctor.contract(reception1, commissionRate);
+        doctor.contract(reception2, commissionRate);
 
 
         assertAll(
@@ -91,7 +92,7 @@ class DoctorTest {
     @Test
     void cancelContract() {
         final Reception reception1 = RECEPTION_1;
-        final Reception reception2 = Fixture.RECEPTION_2;
+        final Reception reception2 = RECEPTION_2;
         final CommissionRate commisionRate = CommissionRate.of(10.0);
         DOCTOR_0원.contract(reception1, commisionRate);
         DOCTOR_0원.contract(reception2, commisionRate);

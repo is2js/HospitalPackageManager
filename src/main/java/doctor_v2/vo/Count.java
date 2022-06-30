@@ -18,7 +18,7 @@ public class Count {
         return new Count(count);
     }
 
-    public Long getValue() {
+    public Long getCount() {
         return count;
     }
 

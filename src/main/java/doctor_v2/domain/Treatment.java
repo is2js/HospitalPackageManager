@@ -52,4 +52,8 @@ public class Treatment {
     public int hashCode() {
         return Objects.hash(sequence, title, description, count);
     }
+
+    public Count getCount() {
+        return count;
+    }
 }

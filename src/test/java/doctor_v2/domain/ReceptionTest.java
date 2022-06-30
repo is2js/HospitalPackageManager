@@ -52,6 +52,5 @@ class ReceptionTest {
             Count.of(1L));
 
         Assertions.assertThat(actual).isNotEqualTo(Package.EMPTY);
-
     }
 }

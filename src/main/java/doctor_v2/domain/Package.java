@@ -18,10 +18,6 @@ public class Package {
         this.count = count;
     }
 
-//    public Long getFee() {
-//        return this.doctor.getFee();
-//    }
-
 //    public boolean isValid(final Doctor doctor) {
 //        // 1회성 객체은 ON/OFF되는 객체처럼, flag변수를 가지며 검증에 포함된다.
 //        // 검증되는 소모성 객체는 EMPTY도 검사에 포함시킨다.
@@ -36,7 +32,9 @@ public class Package {
 //        return true;
 //    }
 
-    public void setUsedState() {
+
+    public Count getCount() {
+        return count;
     }
 
     @Override

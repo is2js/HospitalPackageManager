@@ -30,17 +30,9 @@ public class Main {
             LocalDate.of(2022, 06, 22) // 패키지 생성일
         );
 //            new SequenceAmountDiscount(Money.of(1000.0), Sequence.of(1L)) // 위에서 정해진 할인정책에 대한 정책조건을 앞에 명시한 구상체
-        // doctor는 package발행에 필요한 데이터를 미리 받아저장하여 알고 있다.
-        // -> 상위도메인이라서 먼저 단독key로 저장한다.
+
         doctor.addSpecialty(specialty);
-//        // -> doctor는 specialty에 딸린 하위도메인인 treatment를 상위도메인과 함께 입력받아 저장한다.
-//        //doctor.addTreatment(specialty, treatment);
-//        // --> 하위도메인이 규칙적으로 여러개일 경우, for문을 돌려서 초기데이터를 생성과 동시에 add할 수 있다.
-//        //     상수는 그냥 적으면 되고, 변하는 값을 for문에서 선언하여 생성하되,
-//        //     for문에서 개당 생성되는 것을, for문위에 변수받아놓고 넣던지, 애초에 add메서드를 내부에서 써버려서 하나씩 생성된 것을 바로 넣어버린다.
-//        //     여러가지가 돌아가면, 상위를 바깥/하위를 안쪽 for문의 변수로 선언해서 바깥쪽부터 돌려가며 만들면 된다.
-//        doctor.addTreatment(specialty, treatment);
-//
+
         for (Long seq = 1L; seq <6L; seq++) {
             doctor.addTreatment(
                 specialty,
@@ -69,11 +61,8 @@ public class Main {
         // -> 선택을 ui에서 해주는 데, 현재는 없으므로 for + break로 첫번째 정보들만 선택한다고 가정한다.
         // --> 상위도메인을 통한 하위도메인들 전체조회만 하면, 정보가 다 나온다.
         for (Treatment treatment: doctor.getTreatments(specialty)) {
-//
-//            //patient의 구매
-//            patient.buyPackage(coordinator,
-//                doctor, specialty, treatment,
-//                Count.of(2));
+            //patient의 구매
+            patient.buyPackage(coordinator, doctor, specialty, treatment, Count.of(2L));
 //
 //            //doctor의 검증
 //            final boolean isValidPackage = doctor.validatePackage(patient, Count.of(2));

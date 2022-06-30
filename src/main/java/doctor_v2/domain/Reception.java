@@ -72,6 +72,24 @@ public class Reception {
         return doctors;
     }
 
+    public Package getPackageWithCoupon(final Doctor doctor, final Specialty specialty, final Treatment treatment,
+                                        final Count count) {
+        // C-1) 구매정보 검증은 똑같다.
+        if (!doctors.containsKey(doctor)
+            || !doctor.isValidMatching(specialty, treatment)
+            || !treatment.hasCount(count)) {
+            return Package.EMPTY;
+        }
+        // 돈계산 돈검증은 생략
+
+        // C-2) doctor에게 생성된 물건 떼온다.(완전동일)
+        //     -> doctor에선 돈계산은 원래 안하고 1)구매정보 검증 2) 구매가능갯수 차감 3) 물건반환 완전히 똑같다.
+        //     -> doctor에서 물건가져오는 메서드를 똑같이 사용한다.
+
+        // C-3) 물건검증 -> 성공시 돈가산 -> 생략
+        return doctor.sellPackage(specialty, treatment, count);
+    }
+
     public Package sellPackage(final Doctor doctor,
                                final Specialty specialty, final Treatment treatment,
                                final Count count) {
@@ -93,8 +111,7 @@ public class Reception {
         if (packageItem != Package.EMPTY) {
             // A-4) 돈 가산 (reception, doctor)
             final Money sales = calculateFee(specialty, treatment, count);
-            final CommissionRate commissionRate = doctors.get(doctor);
-            final Money commission = sales.multiRate(commissionRate);
+            final Money commission = sales.multiRate(doctors.get(doctor));
             final Money salesWithNoCommission = sales.minus(commission);
             amount = amount.plus(commission); // reception의 커미션 돈가산
             doctor.plusAmount(salesWithNoCommission); // doctor의 나머지금액 가산
