@@ -164,4 +164,14 @@ class DoctorTest {
 
         assertThat(actual).isTrue();
     }
+
+    @DisplayName("")
+    @Test
+    void plusAmount() {
+        DOCTOR_0원.plusAmount(Money.of(5000.0));
+        DOCTOR_0원.plusAmount(Money.of(5000.0));
+
+        assertThat(DOCTOR_0원).extracting("amount")
+            .isEqualTo(Money.of(10000.0));
+    }
 }

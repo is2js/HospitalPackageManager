@@ -2,6 +2,7 @@ package doctor_v2.domain;
 
 import doctor_v2.Specialty;
 import doctor_v2.vo.CommissionRate;
+import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Set;
 
 public class Doctor {
     private static final Set<Treatment> EMPTY = new HashSet<>();
-    private final Money amount;
+    private Money amount;
     private final Set<Reception> receptions = new HashSet<>();
     private Map<Specialty, Set<Treatment>> specialties = new HashMap<>();
 
@@ -99,5 +100,22 @@ public class Doctor {
     public boolean isValidMatching(final Specialty specialty, final Treatment treatment) {
         //A: key가 존재하고 && 그 key의 value값들 안에 포함되어야한다.
         return specialties.containsKey(specialty) && specialties.get(specialty).contains(treatment);
+    }
+
+    public Package sellPackage(final Specialty specialty, final Treatment treatment, final Count count) {
+        // A-1: 구매정보 검증
+        if (!isValidMatching(specialty, treatment)
+            || !treatment.hasCount(count)) {
+            return Package.EMPTY;
+        }
+        // A-2: 생성 전, 구매가능 갯수 검증 및 갯수 차감
+        treatment.minusCount(count);
+
+        // A-3: 생성하여 반환
+        return new Package(this, specialty, treatment, count);
+    }
+
+    public void plusAmount(final Money money) {
+        amount = amount.plus(money);
     }
 }
