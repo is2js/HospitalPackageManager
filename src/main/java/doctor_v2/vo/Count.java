@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Count {
 
+    public static final Count EMPTY = new Count(0L);
     private final Long count;
 
     private Count(final Long count) {
@@ -47,5 +48,17 @@ public class Count {
 
     public Count decrease() {
         return new Count(count - 1);
+    }
+
+    public boolean isGreaterThanOrEqualTo(final Count count) {
+        return this.count >= count.count;
+    }
+
+    public Count minus(final Count count) {
+        return new Count(this.count - count.count);
+    }
+
+    public boolean isLessThanOrEqualTo(final int count) {
+        return this.count <= count;
     }
 }
