@@ -3,22 +3,20 @@ package doctor_v2.domain;
 import doctor_v2.Specialty;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Patient {
     private Money amount;
-    private Coupon coupon = Coupon.EMPTY;
+    private List<Coupon> coupons = new ArrayList<>();
     private Package packageItem = Package.EMPTY;
 
     public Patient(final Money amount) {
         this.amount = amount;
     }
 
-    public void setCoupon(final Coupon coupon) {
-        this.coupon = coupon;
-    }
-
-    public Coupon getCoupon() {
-        return coupon;
+    public void addCoupon(final Coupon coupon) {
+        this.coupons.add(coupon);
     }
 
     public void buyPackage(final Coordinator coordinator,
@@ -29,21 +27,36 @@ public class Patient {
         this.packageItem = coordinator.sellPackage(this, doctor, specialty, treatment, count);
     }
 
-    public void removeCoupon() {
-        coupon = Coupon.EMPTY;
-    }
-
     public boolean hasAmount(final Money amount) {
-        return this.amount.isGreaterThan(amount) || this.amount.isEqualTo(amount);
+        return this.amount.isGreaterThanOrEqualTo(amount) ;
     }
 
     public boolean minusAmount(final Money fee) {
-        //this.amount = Math.max(this.amount - fee, 0L);
         if (amount.isLessThan(fee)) {
             return false;
         }
         amount = amount.minus(fee);
         return true;
+    }
+
+    public boolean hasCoupons(final Count count) {
+        return count.isLessThanOrEqualTo(coupons.size());
+    }
+
+    public void minusCoupon(Count count) {
+        while (count.isPositive()) {
+            removeCoupon();
+
+            count = count.decrease();
+        }
+    }
+
+    public void removeCoupon() {
+        coupons.remove(0);
+    }
+
+    public List<Coupon> getCoupons() {
+        return coupons;
     }
 
     public Package getPackage() {
