@@ -34,8 +34,13 @@ public class Money {
         return new Money(money - fee);
     }
 
-    public Money multi(final Count count) {
-        return new Money(money * count.getValue());
+    public Money multi(Count count) {
+        Double sum = 0.0;
+        while (count.isPositive()) {
+            sum += money;
+            count = count.decrease();
+        }
+        return new Money(sum);
     }
 
     @Override

@@ -37,4 +37,15 @@ public class Count {
     public int hashCode() {
         return Objects.hash(count);
     }
+
+    public boolean isPositive() {
+        if (count <= 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public Count decrease() {
+        return new Count(count - 1);
+    }
 }
