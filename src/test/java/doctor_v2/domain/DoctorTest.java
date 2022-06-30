@@ -3,8 +3,8 @@ package doctor_v2.domain;
 import static doctor_v2.fixture.Fixture.DOCTOR_0원;
 import static doctor_v2.fixture.Fixture.RECEPTION_1;
 import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원;
-import static doctor_v2.fixture.Fixture.TREATMENT_두번째;
-import static doctor_v2.fixture.Fixture.TREATMENT_첫번째;
+import static doctor_v2.fixture.Fixture.TREATMENT_두번째_10개;
+import static doctor_v2.fixture.Fixture.TREATMENT_첫번째_10개;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -145,8 +145,8 @@ class DoctorTest {
     void getTreatments() {
 
         DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_첫번째);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_첫번째_10개);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
 
         final Set<Treatment> actual = DOCTOR_0원.getTreatments(SPECIALTY_구안와사_5000원);
 
@@ -157,10 +157,10 @@ class DoctorTest {
     @Test
     void isValidMatching() {
         DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_첫번째);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_첫번째_10개);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
 
-        final boolean actual = DOCTOR_0원.isValidMatching(SPECIALTY_구안와사_5000원, TREATMENT_두번째);
+        final boolean actual = DOCTOR_0원.isValidMatching(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
 
         assertThat(actual).isTrue();
     }

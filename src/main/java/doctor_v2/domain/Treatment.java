@@ -21,4 +21,8 @@ public class Treatment {
         this.description = description;
         this.count = count;
     }
+
+    public boolean hasCount(final Count count) {
+        return this.count.isGreaterThanOrEqualTo(count);
+    }
 }
