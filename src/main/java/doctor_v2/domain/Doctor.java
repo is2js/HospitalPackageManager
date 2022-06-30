@@ -1,6 +1,5 @@
 package doctor_v2.domain;
 
-import doctor_v2.Specialty;
 import doctor_v2.vo.CommissionRate;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
@@ -12,9 +11,9 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Doctor {
-    private static final Set<Treatment> EMPTY = new HashSet<>();
     private Money amount;
     private final Set<Reception> receptions = new HashSet<>();
+    private static final Set<Treatment> EMPTY = new HashSet<>();
     private Map<Specialty, Set<Treatment>> specialties = new HashMap<>();
 
     public Doctor(final Money amount) {
@@ -102,7 +101,14 @@ public class Doctor {
 
     public boolean isValidMatching(final Specialty specialty, final Treatment treatment) {
         //A: key가 존재하고 && 그 key의 value값들 안에 포함되어야한다.
-        return specialties.containsKey(specialty) && specialties.get(specialty).contains(treatment);
+        if (!specialties.containsKey(specialty)) {
+            throw new RuntimeException("[ERROR] 해당의사에게 등록되지 않은 진료과목을 가진 상품입니다.");
+        }
+        final Set<Treatment> treatments = specialties.get(specialty);
+        if (!treatments.contains(treatment)) {
+            throw new RuntimeException("[ERROR] 치료정보가 진료과목과 연결되지 않은 상품입니다.");
+        }
+        return true;
     }
 
     public Package sellPackage(final Specialty specialty, final Treatment treatment, final Count count) {
@@ -120,6 +126,33 @@ public class Doctor {
 
     public void plusAmount(final Money money) {
         amount = amount.plus(money);
+    }
+
+    public boolean validatePackage(final Patient patient, final Count count) {
+        //A-1: 환자에게서 구매물건을 받아와서
+        final Package packageItem = patient.getPackage();
+
+        //A-2: getter로 정보들 꺼내서 검증
+//        return packageItem != Package.EMPTY
+//            && packageItem.getDoctor() == this // 물건 생산자의 생산자 확인
+//            && isValidMatching(packageItem.getSpecialty(), packageItem.getTreatment()) // 상-하위 매칭 검증
+//            && packageItem.getCount().isGreaterThanOrEqualTo(count); // 구매한 갯수 vs 검증할 갯수 검증
+        // A && B && C && D 시 true -> not A, not Bearly return 써도되며, early thr를 써서 어떤 것에 걸리는지 확인시켜준다.
+        if (packageItem == Package.EMPTY) {
+            throw new RuntimeException("[ERROR] 소유하신 상품이 존재하지 않습니다.");
+        }
+
+        if (packageItem.getDoctor() != this) {
+            throw new RuntimeException(String.format("[ERROR]  %s가 발행한 상품이 아닙니다.", this));
+        }
+
+        isValidMatching(packageItem.getSpecialty(), packageItem.getTreatment());
+
+
+        if (!packageItem.isCountGreaterThanOrEqualTo(count)) {
+            throw new RuntimeException(String.format("[ERROR] 남은 이용가능 횟수가 모자랍니다. 남은 횟수(%d) < 사용하려는 횟수(%d)",packageItem.getCount().getCount(), count.getCount()));
+        }
+        return true;
     }
 
     @Override
