@@ -10,7 +10,7 @@ public class Treatment {
     private final Sequence sequence;
     private final Title title;
     private final Description description;
-    private final Count count;
+    private Count count;
 
     public Treatment(final Sequence sequence,
                      final Title title,
@@ -24,5 +24,12 @@ public class Treatment {
 
     public boolean hasCount(final Count count) {
         return this.count.isGreaterThanOrEqualTo(count);
+    }
+
+    public void minusCount(final Count count) {
+        if (!hasCount(count)) {
+            throw new RuntimeException("[ERROR] no available count");
+        }
+        this.count = this.count.minus(count);
     }
 }

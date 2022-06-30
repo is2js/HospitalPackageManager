@@ -21,4 +21,14 @@ class TreatmentTest {
           () -> assertThat(actual2).isFalse()
         );
     }
+
+    @DisplayName("")
+    @Test
+    void minusCount() {
+        TREATMENT_첫번째_10개.minusCount(Count.of(1L));
+
+        final boolean actual = TREATMENT_첫번째_10개.hasCount(Count.of(10L));
+
+        assertThat(actual).isFalse();
+    }
 }
