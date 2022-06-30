@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public class Doctor {
@@ -51,10 +52,10 @@ public class Doctor {
 //        return fee;
 //    }
 
-    public boolean validatePackage(final Patient patient) {
-        final Package packageItem = patient.getPackage();
-        return packageItem.isValid(this);
-    }
+//    public boolean validatePackage(final Patient patient) {
+//        final Package packageItem = patient.getPackage();
+//        return packageItem.isValid(this);
+//    }
 
     public boolean addSpecialty(final Specialty specialty) {
         if (specialties.containsKey(specialty)) {
@@ -117,5 +118,24 @@ public class Doctor {
 
     public void plusAmount(final Money money) {
         amount = amount.plus(money);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Doctor doctor = (Doctor) o;
+        return Objects.equals(amount, doctor.amount) && Objects.equals(getReceptions(),
+            doctor.getReceptions()) && Objects.equals(specialties, doctor.specialties);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount, getReceptions(), specialties);
     }
 }

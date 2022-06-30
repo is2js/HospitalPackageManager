@@ -4,6 +4,7 @@ import doctor_v2.vo.Count;
 import doctor_v2.vo.Description;
 import doctor_v2.vo.Sequence;
 import doctor_v2.vo.Title;
+import java.util.Objects;
 
 public class Treatment {
 
@@ -31,5 +32,24 @@ public class Treatment {
             throw new RuntimeException("[ERROR] no available count");
         }
         this.count = this.count.minus(count);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Treatment treatment = (Treatment) o;
+        return Objects.equals(sequence, treatment.sequence) && Objects.equals(title, treatment.title)
+            && Objects.equals(description, treatment.description) && Objects.equals(count,
+            treatment.count);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sequence, title, description, count);
     }
 }

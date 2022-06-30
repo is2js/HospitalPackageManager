@@ -6,6 +6,7 @@ import doctor_v2.vo.Money;
 import doctor_v2.vo.Title;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Specialty {
 
@@ -27,5 +28,23 @@ public class Specialty {
 
     public Money calculateFee(final Treatment treatment, final Count count) {
         return fee.multi(count);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Specialty specialty = (Specialty) o;
+        return Objects.equals(title, specialty.title) && Objects.equals(duration, specialty.duration)
+            && Objects.equals(fee, specialty.fee) && Objects.equals(createDate, specialty.createDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, duration, fee, createDate);
     }
 }
