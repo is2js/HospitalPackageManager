@@ -33,4 +33,8 @@ public class CommissionRate {
     public int hashCode() {
         return Objects.hash(commissionRate);
     }
+
+    public double calculateCommission(final Double money) {
+        return money * (commissionRate / 100);
+    }
 }
