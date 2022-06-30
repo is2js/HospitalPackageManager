@@ -43,9 +43,11 @@ public class Doctor {
 //        }
 //    }
 
-    public void setCoupon(final Patient patient) {
-        //몇번 이상 진료내역있는 회원인지 검증하고 줘도 될 듯?
-        patient.addCoupon(new Coupon(this));
+    public void setCoupons(final Patient patient, Count count) {
+        while (count.isPositive()) {
+            patient.addCoupon(new Coupon(this)); // 나중에 doctor or treament에서 쿠폰발급수량도 정해놔야할 듯.
+            count = count.decrease();
+        }
     }
 
 //    public Long getFee() {
@@ -82,7 +84,7 @@ public class Doctor {
 
 
     public boolean cancelContract(final Reception reception) {
-        if (!reception.cancelContract(this) || !this.receptions.contains(reception) ){
+        if (!reception.cancelContract(this) || !this.receptions.contains(reception)) {
             return false;
         }
 
