@@ -122,7 +122,6 @@ public class Doctor {
 
     @Override
     public boolean equals(final Object o) {
-
         if (this == o) {
             return true;
         }
@@ -130,12 +129,11 @@ public class Doctor {
             return false;
         }
         final Doctor doctor = (Doctor) o;
-        return Objects.equals(amount, doctor.amount) && Objects.equals(getReceptions(),
-            doctor.getReceptions()) && Objects.equals(specialties, doctor.specialties);
+        return Objects.equals(amount, doctor.amount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amount, getReceptions(), specialties);
+        return Objects.hash(amount);
     }
 }
