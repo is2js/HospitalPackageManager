@@ -34,26 +34,25 @@ public class Treatment {
         this.count = this.count.minus(count);
     }
 
+    public Count getCount() {
+        return count;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Treatment)) {
             return false;
         }
         final Treatment treatment = (Treatment) o;
         return Objects.equals(sequence, treatment.sequence) && Objects.equals(title, treatment.title)
-            && Objects.equals(description, treatment.description) && Objects.equals(count,
-            treatment.count);
+            && Objects.equals(description, treatment.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sequence, title, description, count);
-    }
-
-    public Count getCount() {
-        return count;
+        return Objects.hash(sequence, title, description);
     }
 }
