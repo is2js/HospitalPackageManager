@@ -31,15 +31,15 @@ public class Doctor {
         return receptions;
     }
 
-    public void setPackage(final Reception reception, Long number) {
-        if (!receptions.contains(reception)) {
-            throw new RuntimeException("협력관계의 원무과 직원이 아닙니다.");
-        }
-
-        while (number-- >0) {
-            reception.addPackage(new Package(this));
-        }
-    }
+//    public void setPackage(final Reception reception, Long number) {
+//        if (!receptions.contains(reception)) {
+//            throw new RuntimeException("협력관계의 원무과 직원이 아닙니다.");
+//        }
+//
+//        while (number-- >0) {
+//            reception.addPackage(new Package(this));
+//        }
+//    }
 
     public void setCoupon(final Patient patient) {
         //몇번 이상 진료내역있는 회원인지 검증하고 줘도 될 듯?
@@ -94,5 +94,10 @@ public class Doctor {
             return EMPTY;
         }
         return specialties.get(specialty);
+    }
+
+    public boolean isValidMatching(final Specialty specialty, final Treatment treatment) {
+        //A: key가 존재하고 && 그 key의 value값들 안에 포함되어야한다.
+        return specialties.containsKey(specialty) && specialties.get(specialty).contains(treatment);
     }
 }
