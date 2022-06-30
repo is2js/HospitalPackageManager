@@ -1,15 +1,22 @@
 package doctor_v2.domain;
 
+import doctor_v2.Specialty;
+import doctor_v2.vo.Count;
 import java.util.Objects;
 
 public class Package {
-    public static final Package EMPTY = new Package(null);
+    public static final Package EMPTY = new Package(null, null, null, Count.EMPTY);
     private final Doctor doctor;
+    private final Specialty specialty;
+    private final Treatment treatment;
+    private final Count count;
     private boolean isUsed = false;
 
-    public Package(final Doctor doctor) {
-
+    public Package(final Doctor doctor, final Specialty specialty, final Treatment treatment, final Count count) {
         this.doctor = doctor;
+        this.specialty = specialty;
+        this.treatment = treatment;
+        this.count = count;
     }
 
 //    public Long getFee() {
