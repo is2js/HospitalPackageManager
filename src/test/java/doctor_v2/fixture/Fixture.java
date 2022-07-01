@@ -1,6 +1,6 @@
 package doctor_v2.fixture;
 
-import doctor_v2.Specialty;
+import doctor_v2.domain.Specialty;
 import doctor_v2.domain.Doctor;
 import doctor_v2.domain.Patient;
 import doctor_v2.domain.Reception;

@@ -1,6 +1,5 @@
-package doctor_v2;
+package doctor_v2.domain;
 
-import doctor_v2.domain.Treatment;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
 import doctor_v2.vo.Title;
@@ -35,7 +34,7 @@ public class Specialty {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Specialty)) {
             return false;
         }
         final Specialty specialty = (Specialty) o;

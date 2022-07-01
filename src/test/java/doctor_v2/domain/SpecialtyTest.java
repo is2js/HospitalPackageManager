@@ -1,4 +1,4 @@
-package doctor_v2;
+package doctor_v2.domain;
 
 import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원;
 import static doctor_v2.fixture.Fixture.TREATMENT_두번째_10개;

@@ -7,15 +7,18 @@ public class Money {
     private final Double money;
 
     private Money(final Double money) {
+        validatePositive(money);
         this.money = money;
     }
 
     public static Money of(final Double money) {
+        return new Money(money);
+    }
+
+    private void validatePositive(final Double money) {
         if (money < 0) {
             throw new IllegalArgumentException("[ERROR] 음수를 입력할 수 없습니다.");
         }
-
-        return new Money(money);
     }
 
     public boolean isGreaterThanOrEqualTo(final Money fee) {

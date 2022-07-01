@@ -1,15 +1,15 @@
 package doctor_v2.domain;
 
-import doctor_v2.Specialty;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Patient {
+
     private Money amount;
+    private   Package packageItem = Package.EMPTY;
     private List<Coupon> coupons = new ArrayList<>();
-    private Package packageItem = Package.EMPTY;
 
     public Patient(final Money amount) {
         this.amount = amount;
@@ -40,7 +40,7 @@ public class Patient {
     }
 
     public boolean hasCoupons(final Count count) {
-        return count.isLessThanOrEqualTo(coupons.size());
+        return coupons.size() >= count.getCount();
     }
 
     public void minusCoupon(Count count) {

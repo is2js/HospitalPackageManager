@@ -7,14 +7,18 @@ public class Title {
     private final String title;
 
     public Title(final String title) {
+        validateLength(title);
         this.title = title;
     }
 
     public static Title of(final String title) {
-        if (title.length() < 1) {
+        return new Title(title);
+    }
+
+    private void validateLength(final String title) {
+        if (title.length() < 2) {
             throw new IllegalArgumentException("[ERROR] 제목은 2글자 이상이어야합니다.");
         }
-        return new Title(title);
     }
 
     @Override

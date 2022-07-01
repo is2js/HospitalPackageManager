@@ -8,35 +8,18 @@ public class Count {
     private final Long count;
 
     private Count(final Long count) {
+        validateNatureNumber(count);
         this.count = count;
     }
 
     public static Count of(final Long count) {
-        if (count < 0) {
-            throw new IllegalArgumentException("[ERROR] 음수를 입력할 수 없습니다.");
-        }
         return new Count(count);
     }
 
-    public Long getCount() {
-        return count;
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
+    private void validateNatureNumber(final Long count) {
+        if (count < 0) {
+            throw new IllegalArgumentException("[ERROR] 음수를 입력할 수 없습니다.");
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        final Count count1 = (Count) o;
-        return Objects.equals(count, count1.count);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(count);
     }
 
     public boolean isPositive() {
@@ -58,7 +41,24 @@ public class Count {
         return new Count(this.count - count.count);
     }
 
-    public boolean isLessThanOrEqualTo(final int count) {
-        return this.count <= count;
+    public Long getCount() {
+        return count;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Count count1 = (Count) o;
+        return Objects.equals(count, count1.count);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(count);
     }
 }

@@ -29,10 +29,8 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void setReception() {
-        final Doctor doctor = DOCTOR_0원;
-
-        doctor.setReception(RECEPTION_1);
-        final Set<Reception> actual = doctor.getReceptions();
+        DOCTOR_0원.setReception(RECEPTION_1);
+        final Set<Reception> actual = DOCTOR_0원.getReceptions();
 
         assertThat(actual).isNotEmpty();
     }
@@ -52,20 +50,6 @@ class DoctorTest {
 
     @DisplayName("")
     @Test
-    void setPackage() {
-        final Doctor doctor = DOCTOR_0원;
-        final Reception reception = RECEPTION_1;
-
-        doctor.setReception(reception);
-
-//        doctor.setPackage(reception, 3L);
-//        final List<Package> actual = reception.getPackages();
-
-//        assertThat(actual).hasSize(3);
-    }
-
-    @DisplayName("")
-    @Test
     void setCoupon() {
         final Doctor doctor = DOCTOR_0원;
         final Patient patient = new Patient(Money.of(0.0));
@@ -79,13 +63,13 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void contract() {
-        final Doctor doctor = DOCTOR_0원;
-        final Reception reception1 = RECEPTION_1;
-        final Reception reception2 = RECEPTION_2;
+        final Doctor doctor = new Doctor(Money.of(0.0));
+        final Reception reception1 = new Reception(Money.of(0.0));
+        final Reception reception2 = new Reception(Money.of(0.0));
         final CommissionRate commissionRate = CommissionRate.of(10.0);
+
         doctor.contract(reception1, commissionRate);
         doctor.contract(reception2, commissionRate);
-
 
         assertAll(
             () -> assertThat(doctor.getReceptions()).hasSize(2),
@@ -97,16 +81,16 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void cancelContract() {
-        final Reception reception1 = RECEPTION_1;
-        final Reception reception2 = RECEPTION_2;
-        final CommissionRate commisionRate = CommissionRate.of(10.0);
-        DOCTOR_0원.contract(reception1, commisionRate);
-        DOCTOR_0원.contract(reception2, commisionRate);
-        DOCTOR_0원.cancelContract(reception1);
-
+        final Reception reception1 = new Reception(Money.of(0.0));
+        final Reception reception2 = new Reception(Money.of(0.0));
+        final CommissionRate commissionRate = CommissionRate.of(10.0);
+        final Doctor doctor = new Doctor(Money.of(0.0));
+        doctor.contract(reception1, commissionRate);
+        doctor.contract(reception2, commissionRate);
+        doctor.cancelContract(reception1);
 
         assertAll(
-            () -> assertThat(DOCTOR_0원.getReceptions()).hasSize(1),
+            () -> assertThat(doctor.getReceptions()).hasSize(1),
             () -> assertThat(reception1.getDoctors()).isEmpty(),
             () -> assertThat(reception2.getDoctors()).hasSize(1)
         );
@@ -115,7 +99,6 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void getTreatments() {
-
         DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원);
         DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_첫번째_10개);
         DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
