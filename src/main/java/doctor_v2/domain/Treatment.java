@@ -20,11 +20,11 @@ public class Treatment {
     public Treatment(final Sequence sequence,
                      final Title title,
                      final Description description,
-                     final Count count, final LocalDate releaseDate) {
+                     final Count availableCount, final LocalDate releaseDate) {
         this.sequence = sequence;
         this.title = title;
         this.description = description;
-        this.count = count;
+        this.count = availableCount;
         this.releaseDate = releaseDate;
     }
 
@@ -43,8 +43,13 @@ public class Treatment {
         return this.sequence.isIn(sequence);
     }
 
-    public boolean containsSaleDateIn(final Set<DayOfWeek> dayOfWeeks) {
+    public boolean containsReleaseDateIn(final Set<DayOfWeek> dayOfWeeks) {
         return dayOfWeeks.contains(releaseDate.getDayOfWeek());
+    }
+
+    public boolean isEventPeriod(final long eventDays, final LocalDate now) {
+        final LocalDate eventEndDate = releaseDate.plusDays(eventDays); // isBefore는 해당일을 포함시키지 않기 때문에 +1
+        return now.isAfter(releaseDate.minusDays(1)) && now.isBefore(eventEndDate.plusDays(1));
     }
 
     public Sequence getSequence() {
@@ -85,10 +90,5 @@ public class Treatment {
     @Override
     public int hashCode() {
         return Objects.hash(getSequence(), getTitle(), getDescription(), getCount(), getReleaseDate());
-    }
-
-    public boolean isEventPeriod(final long eventDays, final LocalDate now) {
-        final LocalDate eventEndDate = releaseDate.plusDays(eventDays); // isBefore는 해당일을 포함시키지 않기 때문에 +1
-        return now.isAfter(releaseDate.minusDays(1)) && now.isBefore(eventEndDate.plusDays(1));
     }
 }

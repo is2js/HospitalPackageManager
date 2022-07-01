@@ -11,13 +11,13 @@ public class DayOfWeekAmountDiscount extends AmountDiscount {
 
     private Set<DayOfWeek> dayOfWeeks = new HashSet<>();
 
-    protected DayOfWeekAmountDiscount(final Money amount, final DayOfWeek... dayOfWeek) {
+    protected DayOfWeekAmountDiscount(final Money amount, final DayOfWeek... eventDayOfWeeks) {
         super(amount);
-        this.dayOfWeeks.addAll(Arrays.asList(dayOfWeek));
+        this.dayOfWeeks.addAll(Arrays.asList(eventDayOfWeeks));
     }
 
     @Override
     public boolean isSatisfiedBy(final Treatment treatment) {
-        return treatment.containsSaleDateIn(dayOfWeeks);
+        return treatment.containsReleaseDateIn(dayOfWeeks);
     }
 }
