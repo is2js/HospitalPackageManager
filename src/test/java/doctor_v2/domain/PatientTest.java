@@ -12,8 +12,8 @@ import doctor_v2.vo.Description;
 import doctor_v2.vo.Money;
 import doctor_v2.vo.Sequence;
 import doctor_v2.vo.Title;
+import java.time.LocalDate;
 import java.util.stream.Stream;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -78,7 +78,7 @@ class PatientTest {
             Sequence.of(1L),
             Title.of(String.format("%dth 제목", 1L)),
             Description.of(String.format("%d번째 패키지", 1L)),
-            Count.of(10L));
+            Count.of(10L), LocalDate.now());
 
         doctor.addSpecialty(SPECIALTY_구안와사_5000원);
         doctor.addTreatment(SPECIALTY_구안와사_5000원, treatment_10개);
@@ -117,7 +117,7 @@ class PatientTest {
             Sequence.of(1L),
             Title.of(String.format("%dth 제목", 1L)),
             Description.of(String.format("%d번째 패키지", 1L)),
-            Count.of(10L));
+            Count.of(10L), LocalDate.now());
 
         doctor.addSpecialty(SPECIALTY_구안와사_5000원);
         doctor.addTreatment(SPECIALTY_구안와사_5000원, treatment_10개);
@@ -155,7 +155,7 @@ class PatientTest {
             Sequence.of(1L),
             Title.of(String.format("%dth 제목", 1L)),
             Description.of(String.format("%d번째 패키지", 1L)),
-            Count.of(10L));
+            Count.of(10L), LocalDate.now());
 
         doctor.addSpecialty(SPECIALTY_구안와사_5000원);
         doctor.addTreatment(SPECIALTY_구안와사_5000원, treatment_10개);

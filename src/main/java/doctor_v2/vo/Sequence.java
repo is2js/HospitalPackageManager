@@ -7,7 +7,7 @@ public class Sequence {
     private final Long number;
 
     private Sequence(final Long number) {
-        validatePoitive(number);
+        validateNatureNumber(number);
         this.number = number;
     }
 
@@ -15,7 +15,7 @@ public class Sequence {
         return new Sequence(number);
     }
 
-    private void validatePoitive(final Long number) {
+    private void validateNatureNumber(final Long number) {
         if (number < 0) {
             throw new IllegalArgumentException("[ERROR] 음수를 입력할 수 없습니다.");
         }
@@ -36,5 +36,9 @@ public class Sequence {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    public boolean isIn(final Sequence sequence) {
+        return this.number <= sequence.number;
     }
 }

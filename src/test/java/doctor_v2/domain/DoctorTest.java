@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import doctor_v2.discountpolicy.amount.SequenceAmountDiscount;
 import doctor_v2.vo.CommissionRate;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Description;
@@ -156,14 +157,14 @@ class DoctorTest {
             Title.of("구안와사"),
             Duration.ofDays(60),
             Money.of(5000.0),
-            LocalDate.of(2022, 06, 22)
-        );
+            LocalDate.of(2022, 06, 22),
+            new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L)));
 
         final Treatment matchedTreatment = new Treatment(
             Sequence.of(1L),
             Title.of(String.format("%dth 제목", 1L)),
             Description.of(String.format("%d번째 패키지", 1L)),
-            Count.of(10L));
+            Count.of(10L), LocalDate.now());
 
         final Count availableCount = Count.of(1L);
         final Count notAvailableCount = Count.of(11L);
@@ -191,14 +192,14 @@ class DoctorTest {
             Title.of("구안와사"),
             Duration.ofDays(60),
             Money.of(5000.0),
-            LocalDate.of(2022, 06, 22)
-        );
+            LocalDate.of(2022, 06, 22),
+            new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L)));
 
         final Treatment matchedTreatment = new Treatment(
             Sequence.of(1L),
             Title.of(String.format("%dth 제목", 1L)),
             Description.of(String.format("%d번째 패키지", 1L)),
-            Count.of(10L));
+            Count.of(10L), LocalDate.now());
 
         final Count availableCount = Count.of(1L);
 
@@ -225,14 +226,14 @@ class DoctorTest {
             Title.of("구안와사"),
             Duration.ofDays(60),
             Money.of(5000.0),
-            LocalDate.of(2022, 06, 22)
-        );
+            LocalDate.of(2022, 06, 22),
+            new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L)));
 
         final Treatment matchedTreatment = new Treatment(
             Sequence.of(1L),
             Title.of(String.format("%dth 제목", 1L)),
             Description.of(String.format("%d번째 패키지", 1L)),
-            Count.of(10L));
+            Count.of(10L), LocalDate.now());
 
         final Count availableCount = Count.of(1L);
         final Count notAvailableCount = Count.of(2L);

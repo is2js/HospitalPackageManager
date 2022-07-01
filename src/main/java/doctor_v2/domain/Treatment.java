@@ -4,8 +4,10 @@ import doctor_v2.vo.Count;
 import doctor_v2.vo.Description;
 import doctor_v2.vo.Sequence;
 import doctor_v2.vo.Title;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 public class Treatment {
 
@@ -13,17 +15,17 @@ public class Treatment {
     private final Title title;
     private final Description description;
     private Count count;
-    private final LocalDate saleDate;
+    private final LocalDate releaseDate;
 
     public Treatment(final Sequence sequence,
                      final Title title,
                      final Description description,
-                     final Count count, final LocalDate saleDate) {
+                     final Count count, final LocalDate releaseDate) {
         this.sequence = sequence;
         this.title = title;
         this.description = description;
         this.count = count;
-        this.saleDate = saleDate;
+        this.releaseDate = releaseDate;
     }
 
     public boolean hasCount(final Count count) {
@@ -39,6 +41,10 @@ public class Treatment {
 
     public boolean isSequenceIn(final Sequence sequence) {
         return this.sequence.isIn(sequence);
+    }
+
+    public boolean containsSaleDateIn(final Set<DayOfWeek> dayOfWeeks) {
+        return dayOfWeeks.contains(releaseDate.getDayOfWeek());
     }
 
     public Sequence getSequence() {
@@ -57,8 +63,8 @@ public class Treatment {
         return count;
     }
 
-    public LocalDate getSaleDate() {
-        return saleDate;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
     @Override
@@ -72,12 +78,17 @@ public class Treatment {
         final Treatment treatment = (Treatment) o;
         return Objects.equals(getSequence(), treatment.getSequence()) && Objects.equals(getTitle(),
             treatment.getTitle()) && Objects.equals(getDescription(), treatment.getDescription())
-            && Objects.equals(getCount(), treatment.getCount()) && Objects.equals(getSaleDate(),
-            treatment.getSaleDate());
+            && Objects.equals(getCount(), treatment.getCount()) && Objects.equals(getReleaseDate(),
+            treatment.getReleaseDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSequence(), getTitle(), getDescription(), getCount(), getSaleDate());
+        return Objects.hash(getSequence(), getTitle(), getDescription(), getCount(), getReleaseDate());
+    }
+
+    public boolean isEventPeriod(final long eventDays, final LocalDate now) {
+        final LocalDate eventEndDate = releaseDate.plusDays(eventDays); // isBefore는 해당일을 포함시키지 않기 때문에 +1
+        return now.isAfter(releaseDate.minusDays(1)) && now.isBefore(eventEndDate.plusDays(1));
     }
 }

@@ -1,5 +1,7 @@
 package doctor_v2;
 
+import doctor_v2.discountpolicy.amount.AmountDiscount;
+import doctor_v2.discountpolicy.amount.SequenceAmountDiscount;
 import doctor_v2.domain.Coordinator;
 import doctor_v2.domain.Doctor;
 import doctor_v2.domain.Patient;
@@ -20,13 +22,17 @@ public class Main {
         // doctor ===========================================
         final Doctor doctor = new Doctor(Money.of(100.0));
 
-        Specialty specialty = new Specialty( // <AmountDiscount>( // 일정금액할인 vs 퍼센트할인을 정한다.
+        ///add Specialty(MANY) to doctor(ONE)
+        // A: 할인정책 action 3가지( 일정금액Amount, 일정비율Percent, 중복Overlapped, 없음None)
+        // B: 할인조건 condition 3가지( Sequence선착순, Period기간, DayOfWeek요일(주말) )
+        Specialty specialty = new Specialty<AmountDiscount>(
             Title.of("구안와사"),
-            Duration.ofDays(60),
+            Duration.ofDays(60), //지속 기간
             Money.of(5000.0),
-            LocalDate.of(2022, 06, 22) // 패키지 생성일
+            LocalDate.of(2022, 06, 22), // 패키지 생성일
+            new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L))
         );
-//            new SequenceAmountDiscount(Money.of(1000.0), Sequence.of(1L)) // 위에서 정해진 할인정책에 대한 정책조건을 앞에 명시한 구상체
+
         doctor.addSpecialty(specialty);
 
         for (Long seq = 1L; seq <6L; seq++) {
@@ -34,7 +40,7 @@ public class Main {
                 specialty,
                 new Treatment(Sequence.of(seq),
                     Title.of(String.format("%dth 제목", seq)),
-                    Description.of(String.format("%d번째 패키지", seq)), Count.of(10L))
+                    Description.of(String.format("%d번째 패키지", seq)), Count.of(10L), LocalDate.now())
             );
         }
 
