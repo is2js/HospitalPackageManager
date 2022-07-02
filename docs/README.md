@@ -2,7 +2,7 @@
 
 ### Diagram
 - v2
-    ![20220701120207](https://raw.githubusercontent.com/is3js/screenshots/main/20220701120207.png)
+  ![image-20220703010442315](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703010442315.png)
 ### Steps
 - main
     - docs > README.md(updating)
