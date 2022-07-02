@@ -9,6 +9,10 @@ public class PeriodCondition implements DiscountCondition {
     private long eventDays;
     private LocalDate purchaseDate;
 
+    public PeriodCondition(final long eventDays) {
+        this(eventDays, LocalDate.now());
+    }
+
     public PeriodCondition(final long eventDays, final LocalDate purchaseDate) {
         this.eventDays = eventDays;
         this.purchaseDate = purchaseDate;

@@ -15,17 +15,17 @@ public class Treatment {
     private final Title title;
     private final Description description;
     private Count count;
-    private final LocalDate releaseDate;
+    private final LocalDate purchaseDate;
 
     public Treatment(final Sequence sequence,
                      final Title title,
                      final Description description,
-                     final Count availableCount, final LocalDate releaseDate) {
+                     final Count availableCount, final LocalDate purchaseDate) {
         this.sequence = sequence;
         this.title = title;
         this.description = description;
         this.count = availableCount;
-        this.releaseDate = releaseDate;
+        this.purchaseDate = purchaseDate;
     }
 
     public boolean hasCount(final Count count) {
@@ -44,12 +44,12 @@ public class Treatment {
     }
 
     public boolean containsReleaseDateIn(final Set<DayOfWeek> dayOfWeeks) {
-        return dayOfWeeks.contains(releaseDate.getDayOfWeek());
+        return dayOfWeeks.contains(purchaseDate.getDayOfWeek());
     }
 
     public boolean isInEventPeriod(final long eventDays, final LocalDate purchaseDate) {
-        final LocalDate eventEndDate = releaseDate.minusDays(1).plusDays(eventDays);
-        return purchaseDate.isAfter(releaseDate.minusDays(1)) && purchaseDate.isBefore(eventEndDate.plusDays(1));
+        final LocalDate eventEndDate = this.purchaseDate.minusDays(1).plusDays(eventDays);
+        return purchaseDate.isAfter(this.purchaseDate.minusDays(1)) && purchaseDate.isBefore(eventEndDate.plusDays(1));
     }
 
     public Sequence getSequence() {
@@ -68,8 +68,8 @@ public class Treatment {
         return count;
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
     }
 
     @Override
@@ -83,12 +83,12 @@ public class Treatment {
         final Treatment treatment = (Treatment) o;
         return Objects.equals(getSequence(), treatment.getSequence()) && Objects.equals(getTitle(),
             treatment.getTitle()) && Objects.equals(getDescription(), treatment.getDescription())
-            && Objects.equals(getCount(), treatment.getCount()) && Objects.equals(getReleaseDate(),
-            treatment.getReleaseDate());
+            && Objects.equals(getCount(), treatment.getCount()) && Objects.equals(getPurchaseDate(),
+            treatment.getPurchaseDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSequence(), getTitle(), getDescription(), getCount(), getReleaseDate());
+        return Objects.hash(getSequence(), getTitle(), getDescription(), getCount(), getPurchaseDate());
     }
 }
