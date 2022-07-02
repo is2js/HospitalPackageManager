@@ -47,9 +47,9 @@ public class Treatment {
         return dayOfWeeks.contains(releaseDate.getDayOfWeek());
     }
 
-    public boolean isInEventPeriod(final long eventDays, final LocalDate now) {
-        final LocalDate eventEndDate = releaseDate.plusDays(eventDays);
-        return now.isAfter(releaseDate.minusDays(1)) && now.isBefore(eventEndDate.plusDays(1));
+    public boolean isInEventPeriod(final long eventDays, final LocalDate purchaseDate) {
+        final LocalDate eventEndDate = releaseDate.minusDays(1).plusDays(eventDays);
+        return purchaseDate.isAfter(releaseDate.minusDays(1)) && purchaseDate.isBefore(eventEndDate.plusDays(1));
     }
 
     public Sequence getSequence() {
