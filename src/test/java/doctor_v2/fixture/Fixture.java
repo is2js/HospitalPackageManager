@@ -1,6 +1,5 @@
 package doctor_v2.fixture;
 
-import doctor_v2.discountpolicy.amount.SequenceAmountDiscount;
 import doctor_v2.domain.Doctor;
 import doctor_v2.domain.Patient;
 import doctor_v2.domain.Reception;
@@ -19,21 +18,13 @@ public class Fixture {
         Title.of("구안와사"),
         Duration.ofDays(60),
         Money.of(5000.0),
-        LocalDate.of(2022, 06, 22),
-        new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L)));
-    public static final Specialty SPECIALTY_구안와사_5000원_2 = new Specialty(
-        Title.of("구안와사"),
-        Duration.ofDays(60),
-        Money.of(5000.0),
-        LocalDate.of(2022, 06, 22),
-        new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L)));
+        LocalDate.of(2022, 06, 22));
 
     public static final Specialty SPECIALTY_매선 = new Specialty(
         Title.of("매선"),
         Duration.ofDays(60),
         Money.of(5000.0),
-        LocalDate.of(2022, 06, 22),
-        new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L)));
+        LocalDate.of(2022, 06, 22));
 
     public static final Treatment TREATMENT_첫번째_10개 = new Treatment(
         Sequence.of(1L),

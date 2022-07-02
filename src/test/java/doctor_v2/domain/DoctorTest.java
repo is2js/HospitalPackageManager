@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import doctor_v2.discountpolicy.amount.SequenceAmountDiscount;
 import doctor_v2.vo.CommissionRate;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Description;
@@ -157,8 +156,7 @@ class DoctorTest {
             Title.of("구안와사"),
             Duration.ofDays(60),
             Money.of(5000.0),
-            LocalDate.of(2022, 06, 22),
-            new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L)));
+            LocalDate.of(2022, 06, 22));
 
         final Treatment matchedTreatment = new Treatment(
             Sequence.of(1L),
@@ -192,8 +190,7 @@ class DoctorTest {
             Title.of("구안와사"),
             Duration.ofDays(60),
             Money.of(5000.0),
-            LocalDate.of(2022, 06, 22),
-            new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L)));
+            LocalDate.of(2022, 06, 22));
 
         final Treatment matchedTreatment = new Treatment(
             Sequence.of(1L),
@@ -226,8 +223,7 @@ class DoctorTest {
             Title.of("구안와사"),
             Duration.ofDays(60),
             Money.of(5000.0),
-            LocalDate.of(2022, 06, 22),
-            new SequenceAmountDiscount(Money.of(0.0), Sequence.of(0L)));
+            LocalDate.of(2022, 06, 22));
 
         final Treatment matchedTreatment = new Treatment(
             Sequence.of(1L),
