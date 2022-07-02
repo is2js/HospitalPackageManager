@@ -16,14 +16,14 @@ public abstract class DiscountPolicy {
     }
 
     public final Money calculateFee(final Treatment treatment, final Count count, final Money fee) {
-        Money appliedFee = fee;
+        Money currentFee = fee;
         for (final DiscountCondition condition : conditions) {
             if (condition.isSatisfiedBy(treatment, count)) {
-                appliedFee = applyPolicyTo(appliedFee);
+                currentFee = applyPolicyTo(currentFee);
             }
         }
 
-        return appliedFee;
+        return currentFee;
     }
 
     protected abstract Money applyPolicyTo(final Money fee);
