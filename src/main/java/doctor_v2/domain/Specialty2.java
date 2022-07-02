@@ -1,7 +1,7 @@
 package doctor_v2.domain;
 
-import doctor_v2.discountpolicy.DiscountCondition;
-import doctor_v2.discountpolicy.DiscountPolicy;
+import doctor_v2.discountpolicy2.DiscountCondition2;
+import doctor_v2.discountpolicy2.DiscountPolicy2;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
 import doctor_v2.vo.Title;
@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Specialty2<T extends DiscountCondition & DiscountPolicy> {
+public class Specialty2<T extends DiscountCondition2 & DiscountPolicy2> {
 
     private final Title title;
     private final Duration duration;

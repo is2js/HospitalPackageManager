@@ -1,7 +1,7 @@
 package doctor_v2.discountpolicy2.percent;
 
-import doctor_v2.discountpolicy.DiscountPolicy.PERCENT;
 import doctor_v2.discountpolicy2.DiscountCondition2;
+import doctor_v2.discountpolicy2.DiscountPolicy2.PERCENT;
 import doctor_v2.domain.DiscountPercent;
 import doctor_v2.vo.Money;
 
