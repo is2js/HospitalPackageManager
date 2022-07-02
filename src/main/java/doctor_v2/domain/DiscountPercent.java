@@ -13,12 +13,12 @@ public class DiscountPercent {
         this.percent = percent;
     }
 
-    public static DiscountPercent of (final Integer percent) {
+    public static DiscountPercent of(final Integer percent) {
         return new DiscountPercent(percent);
     }
 
     public Double applyTo(final Double money) {
-        return money * (percent/100);
+        return money * (percent / 100.0);
     }
 
     @Override
