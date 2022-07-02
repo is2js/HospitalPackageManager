@@ -24,9 +24,10 @@
     - 2개 인터페이스 조합을 깨고, 그 지식을 분산시킨다.
         ![image-20220702164553323](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220702164553323.png)  
     - specialty 내부에 있던 `정책 최종구상체들 trigger 묻기 -> action 하기`의 과정을 **템플릿 메소드 패턴**로 보고
+        ![image-20220702171035277](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220702171035277.png)
         1. trigger의 묻는 것은 `정책조건 전략객체들을 주입`받아서 `1개의 전략메서드로서 그들이 알아서 boolean반환`하게 함.
         2. action하는 것은 `훅메서드로서 상속 자식들서 개별구현`
-            ![image-20220702171035277](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220702171035277.png)
+           ![image-20220702235625410](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220702235625410.png)
     - specialty는 `정책적용 대상객체(fee)` + `정책조건 판단 정보(treatement, count)`를 모두 인자로 받는 
         - **trigger를 머금은 action 추상클래스**인 `policy`를 안다. 
     - policy는 **템플릿 메소드 내부에서 공통로직으로 사용될 trigger메서드**를 위한 `정책조건 전략객체`를 생성자 주입받아서 안다. 
