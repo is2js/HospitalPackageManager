@@ -8,7 +8,7 @@ public class Count {
     private final Long count;
 
     private Count(final Long count) {
-        validateNatureNumber(count);
+        validateNotNegative(count);
         this.count = count;
     }
 
@@ -16,7 +16,7 @@ public class Count {
         return new Count(count);
     }
 
-    private void validateNatureNumber(final Long count) {
+    private void validateNotNegative(final Long count) {
         if (count < 0) {
             throw new IllegalArgumentException("[ERROR] 음수를 입력할 수 없습니다.");
         }

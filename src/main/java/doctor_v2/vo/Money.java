@@ -5,10 +5,12 @@ import java.util.Objects;
 
 public class Money {
 
+    public static final Money ZERO = new Money(0.0);
+
     private final Double money;
 
     private Money(final Double money) {
-        validatePositive(money);
+        validateNotNegative(money);
         this.money = money;
     }
 
@@ -16,9 +18,9 @@ public class Money {
         return new Money(money);
     }
 
-    private void validatePositive(final Double money) {
+    private void validateNotNegative(final Double money) {
         if (money < 0) {
-            throw new IllegalArgumentException("[ERROR] 음수를 입력할 수 없습니다.");
+            throw new RuntimeException("[ERROR] 돈은 음수가 될 수 없습니다.");
         }
     }
 
@@ -70,5 +72,9 @@ public class Money {
     @Override
     public int hashCode() {
         return Objects.hash(money);
+    }
+
+    public boolean isGreaterThan(final Money money) {
+        return this.money > money.money;
     }
 }
