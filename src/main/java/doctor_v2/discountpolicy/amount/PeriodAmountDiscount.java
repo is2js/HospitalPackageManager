@@ -7,22 +7,20 @@ import java.time.LocalDate;
 public class PeriodAmountDiscount extends AmountDiscount {
 
     private long eventDays;
-    private LocalDate now;
+    private LocalDate purchaseDate;
 
-    protected PeriodAmountDiscount(final Money amount, final long eventDays, final LocalDate now) {
-        super(amount);
-        this.eventDays = eventDays;
-        this.now = now;
+    protected PeriodAmountDiscount(final Money amount, final long eventDays) {
+        this(amount, eventDays, LocalDate.now());
     }
 
-    public PeriodAmountDiscount(final Money amount, final long eventDays) {
+    protected PeriodAmountDiscount(final Money amount, final long eventDays, final LocalDate purchaseDate) {
         super(amount);
         this.eventDays = eventDays;
-        this.now = LocalDate.now();
+        this.purchaseDate = purchaseDate;
     }
 
     @Override
     public boolean isSatisfiedBy(final Treatment treatment) {
-        return treatment.isEventPeriod(eventDays, now);
+        return treatment.isInEventPeriod(eventDays, purchaseDate);
     }
 }
