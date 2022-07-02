@@ -15,6 +15,12 @@ public class PeriodAmountDiscount extends AmountDiscount {
         this.now = now;
     }
 
+    public PeriodAmountDiscount(final Money amount, final long eventDays) {
+        super(amount);
+        this.eventDays = eventDays;
+        this.now = LocalDate.now();
+    }
+
     @Override
     public boolean isSatisfiedBy(final Treatment treatment) {
         return treatment.isEventPeriod(eventDays, now);

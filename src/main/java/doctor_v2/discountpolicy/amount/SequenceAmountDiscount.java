@@ -6,15 +6,15 @@ import doctor_v2.vo.Sequence;
 
 public class SequenceAmountDiscount extends AmountDiscount{
 
-    private Sequence sequence;
+    private Sequence eventMaxSequence;
 
-    public SequenceAmountDiscount(final Money amount, final Sequence sequence) {
+    public SequenceAmountDiscount(final Money amount, final Sequence eventMaxSequence) {
         super(amount);
-        this.sequence = sequence;
+        this.eventMaxSequence = eventMaxSequence;
     }
 
     @Override
     public boolean isSatisfiedBy(final Treatment treatment) {
-        return treatment.isSequenceIn(sequence);
+        return treatment.isSequenceIn(eventMaxSequence);
     }
 }

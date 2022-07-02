@@ -18,12 +18,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 class DayOfWeekAmountDiscountTest {
 
     public static Stream<Arguments> isSatisfiedBy() {
-        final LocalDate releaseDate = LocalDate.now();
         return Stream.of(
             // 출시날짜, 이벤트요일, expected
-            Arguments.of(releaseDate, releaseDate.getDayOfWeek().minus(1), false),
-            Arguments.of(releaseDate, releaseDate.getDayOfWeek(), true),
-            Arguments.of(releaseDate, releaseDate.getDayOfWeek().plus(1), false));
+            Arguments.of(LocalDate.now(), LocalDate.now().getDayOfWeek().minus(1), false),
+            Arguments.of(LocalDate.now(), LocalDate.now().getDayOfWeek(), true),
+            Arguments.of(LocalDate.now(), LocalDate.now().getDayOfWeek().plus(1), false));
     }
 
     @ParameterizedTest

@@ -48,7 +48,7 @@ public class Treatment {
     }
 
     public boolean isEventPeriod(final long eventDays, final LocalDate now) {
-        final LocalDate eventEndDate = releaseDate.plusDays(eventDays); // isBefore는 해당일을 포함시키지 않기 때문에 +1
+        final LocalDate eventEndDate = releaseDate.plusDays(eventDays);
         return now.isAfter(releaseDate.minusDays(1)) && now.isBefore(eventEndDate.plusDays(1));
     }
 
