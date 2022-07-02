@@ -7,7 +7,10 @@ import doctor_v2.vo.Money;
 import doctor_v2.vo.Title;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Specialty<T extends DiscountCondition & DiscountPolicy> {
 
@@ -15,27 +18,29 @@ public class Specialty<T extends DiscountCondition & DiscountPolicy> {
     private final Duration duration;
     private final Money fee;
     private final LocalDate createDate;
-    private final T discountPolicy;
+    private final Set<T> discountPolicies = new HashSet<>();
 
     public Specialty(final Title title,
                      final Duration duration,
                      final Money fee,
                      final LocalDate createDate,
-                     final T discountPolicy) {
+                     final T... discountPolicies) {
 
         this.title = title;
         this.duration = duration;
         this.fee = fee;
         this.createDate = createDate;
-        this.discountPolicy = discountPolicy;
+        this.discountPolicies.addAll(Arrays.asList(discountPolicies));
     }
 
     public Money calculateFee(final Treatment treatment, final Count count) {
-        if (discountPolicy.isSatisfiedBy(treatment)){
-            return discountPolicy.calculateFee(fee)
-                .multi(count);
+        Money calculatedFee = fee;
+        for (final T discountPolicy : discountPolicies) {
+            if (discountPolicy.isSatisfiedBy(treatment)) {
+                calculatedFee = discountPolicy.calculateFee(calculatedFee);
+            }
         }
-        return fee.multi(count);
+        return calculatedFee.multi(count);
     }
 
     @Override

@@ -9,7 +9,7 @@ public class PeriodAmountDiscount extends AmountDiscount {
     private long eventDays;
     private LocalDate purchaseDate;
 
-    protected PeriodAmountDiscount(final Money amount, final long eventDays) {
+    public PeriodAmountDiscount(final Money amount, final long eventDays) {
         this(amount, eventDays, LocalDate.now());
     }
 
