@@ -21,6 +21,10 @@ public class CommissionRate {
         }
     }
 
+    public double applyTo(final Double money) {
+        return money * (commissionRate / 100);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -36,9 +40,5 @@ public class CommissionRate {
     @Override
     public int hashCode() {
         return Objects.hash(commissionRate);
-    }
-
-    public double calculateCommission(final Double money) {
-        return money * (commissionRate / 100);
     }
 }

@@ -40,6 +40,7 @@ public class Fixture {
         Title.of(String.format("%dth 제목", 1L)),
         Description.of(String.format("%d번째 패키지", 1L)),
         Count.of(10L), LocalDate.now());
+
     public static final Treatment TREATMENT_두번째_10개 = new Treatment(
         Sequence.of(2L),
         Title.of(String.format("%dth 제목", 2L)),

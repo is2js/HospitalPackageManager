@@ -1,5 +1,6 @@
 package doctor_v2.vo;
 
+import doctor_v2.domain.DiscountPercent;
 import java.util.Objects;
 
 public class Money {
@@ -43,11 +44,15 @@ public class Money {
     }
 
     public Money multiRate(final CommissionRate commissionRate) {
-        return new Money(commissionRate.calculateCommission(money));
+        return new Money(commissionRate.applyTo(money));
     }
 
     public Money plus(final Money money) {
         return new Money(this.money + money.money);
+    }
+
+    public Money multiPercent(final DiscountPercent percent) {
+        return new Money(percent.applyTo(money));
     }
 
     @Override
