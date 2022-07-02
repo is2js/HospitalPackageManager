@@ -33,7 +33,7 @@ class SpecialtyTest {
             Duration.ofDays(60),
             Money.of(5000.0),
             LocalDate.of(2022, 06, 22),
-            new AmountPolicy());
+            new AmountPolicy(Money.of(0.0)));
 
         final Money expected = Money.of(5000.0 - 2000.0).multi(Count.of(2L));
         final Money actual = specialty.calculateFee(TREATMENT_두번째_10개, Count.of(2L));
