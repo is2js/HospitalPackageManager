@@ -1,7 +1,8 @@
-package doctor_v2.discountpolicy;
+package doctor_v2.discountpolicy.strategy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import doctor_v2.discountpolicy.DiscountPolicy;
 import doctor_v2.discountpolicy.condition.SequenceCondition;
 import doctor_v2.fixture.Fixture;
 import doctor_v2.vo.Money;
@@ -11,7 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class AmountPolicyTest {
+class AmountPolicyApplierTest {
 
     public static Stream<Arguments> applyPolicyTo() {
         return Stream.of(
@@ -24,10 +25,11 @@ class AmountPolicyTest {
     @MethodSource
     void applyPolicyTo(final Money beforeDiscountAmount, final Money discountAmount, final Money expected) {
         final SequenceCondition sequenceCondition = new SequenceCondition(Sequence.of(3L));
-        final DiscountPolicy amountPolicy = new AmountPolicy(discountAmount);
-        amountPolicy.addCondition(sequenceCondition);
+        final PolicyApplier policyApplier = new AmountPolicyApplier(discountAmount);
+        final DiscountPolicy discountPolicy = new DiscountPolicy(policyApplier);
+        discountPolicy.addCondition(sequenceCondition);
 
-        final Money actual = amountPolicy.calculateFee(Fixture.TREATMENT_첫번째_시퀀스, Fixture.COUNT_1개, beforeDiscountAmount);
+        final Money actual = discountPolicy.calculateFee(Fixture.TREATMENT_첫번째_시퀀스, Fixture.COUNT_1개, beforeDiscountAmount);
 
         assertThat(actual).isEqualTo(expected);
     }
