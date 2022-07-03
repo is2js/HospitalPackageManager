@@ -25,8 +25,8 @@ class AmountPolicyApplierTest {
     @MethodSource
     void applyPolicyTo(final Money beforeDiscountAmount, final Money discountAmount, final Money expected) {
         final SequenceCondition sequenceCondition = new SequenceCondition(Sequence.of(3L));
-        final PolicyApplier policyApplier = new AmountPolicyApplier(discountAmount);
-        final DiscountPolicy discountPolicy = new DiscountPolicy(policyApplier);
+        final PolicyApplier amountPolicyApplierFactory = new AmountPolicyApplierFactory(discountAmount);
+        final DiscountPolicy discountPolicy = new DiscountPolicy(amountPolicyApplierFactory);
         discountPolicy.addCondition(sequenceCondition);
 
         final Money actual = discountPolicy.calculateFee(Fixture.TREATMENT_첫번째_시퀀스, Fixture.COUNT_1개, beforeDiscountAmount);

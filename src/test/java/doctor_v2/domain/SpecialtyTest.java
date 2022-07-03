@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import doctor_v2.discountpolicy.DiscountPolicy;
 import doctor_v2.discountpolicy.condition.NoneCondition;
-import doctor_v2.discountpolicy.strategy.AmountPolicyApplier;
+import doctor_v2.discountpolicy.strategy.AmountPolicyApplierFactory;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Money;
 import doctor_v2.vo.Title;
@@ -30,7 +30,7 @@ class SpecialtyTest {
     @DisplayName("")
     @Test
     void multiple_calculateFee() {
-        final DiscountPolicy discountPolicy = new DiscountPolicy(new AmountPolicyApplier(Money.of(2000.0)));
+        final DiscountPolicy discountPolicy = new DiscountPolicy(new AmountPolicyApplierFactory(Money.of(2000.0)));
         discountPolicy.addCondition(new NoneCondition());
 
         final Specialty specialty = new Specialty(

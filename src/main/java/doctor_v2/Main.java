@@ -2,7 +2,7 @@ package doctor_v2;
 
 import doctor_v2.discountpolicy.DiscountPolicy;
 import doctor_v2.discountpolicy.condition.SequenceCondition;
-import doctor_v2.discountpolicy.strategy.AmountPolicyApplier;
+import doctor_v2.discountpolicy.strategy.AmountPolicyApplierFactory;
 import doctor_v2.discountpolicy.strategy.PolicyApplier;
 import doctor_v2.domain.Coordinator;
 import doctor_v2.domain.Doctor;
@@ -28,8 +28,10 @@ public class Main {
         // A: 할인정책 action 3가지( 일정금액Amount, 일정비율Percent, 중복Overlapped, 없음None)
         // B: 할인조건 condition 3가지( Sequence선착순, Period기간, DayOfWeek요일(주말) )
         // -> discontPolicy는 2가지 전략객체를 사용하는 일반클래스가 됨.
-        final PolicyApplier policyApplier = new AmountPolicyApplier(Money.of(0.0));
-        final DiscountPolicy discountPolicy = new DiscountPolicy(policyApplier);
+        // --> discountPolicy는 전략객체 대신, 전략객체Factory를 주입하도록 변경
+        //     전략객체는 factory내부에서 캐싱되어 생성 -> 사용된다.
+        final PolicyApplier amountPolicyApplierFactory = new AmountPolicyApplierFactory(Money.of(0.0));
+        final DiscountPolicy discountPolicy = new DiscountPolicy(amountPolicyApplierFactory);
         discountPolicy.addCondition(new SequenceCondition(Sequence.of(3L)));
 
         final Specialty specialty = new Specialty(
