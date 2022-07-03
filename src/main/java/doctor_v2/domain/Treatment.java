@@ -20,7 +20,8 @@ public class Treatment {
     public Treatment(final Sequence sequence,
                      final Title title,
                      final Description description,
-                     final Count availableCount, final LocalDate purchaseDate) {
+                     final Count availableCount,
+                     final LocalDate purchaseDate) {
         this.sequence = sequence;
         this.title = title;
         this.description = description;
@@ -72,6 +73,7 @@ public class Treatment {
         return purchaseDate;
     }
 
+    // 상태가 변하는 count를 제외하고 eq/hC를 비교한다.
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -83,12 +85,11 @@ public class Treatment {
         final Treatment treatment = (Treatment) o;
         return Objects.equals(getSequence(), treatment.getSequence()) && Objects.equals(getTitle(),
             treatment.getTitle()) && Objects.equals(getDescription(), treatment.getDescription())
-            && Objects.equals(getCount(), treatment.getCount()) && Objects.equals(getPurchaseDate(),
-            treatment.getPurchaseDate());
+            && Objects.equals(getPurchaseDate(), treatment.getPurchaseDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSequence(), getTitle(), getDescription(), getCount(), getPurchaseDate());
+        return Objects.hash(getSequence(), getTitle(), getDescription(), getPurchaseDate());
     }
 }

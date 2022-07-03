@@ -12,8 +12,8 @@ class MoneyTest {
     @Test
     void create_fail____음수() {
         assertThatThrownBy(() -> Money.of(-1.0))
-          .isInstanceOf(IllegalArgumentException.class)
-          .hasMessage("[ERROR] 음수를 입력할 수 없습니다.");
+          .isInstanceOf(RuntimeException.class)
+          .hasMessage("[ERROR] 돈은 음수가 될 수 없습니다.");
     }
 
     @DisplayName("")

@@ -39,7 +39,7 @@ public class Specialty {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Specialty)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         final Specialty specialty = (Specialty) o;
