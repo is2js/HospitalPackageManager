@@ -30,4 +30,8 @@
            ![image-20220702235625410](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220702235625410.png)
     - specialty는 `정책적용 대상객체(fee)` + `정책조건 판단 정보(treatement, count)`를 모두 인자로 받는 
         - **trigger를 머금은 action 추상클래스**인 `policy`를 안다. 
-    - policy는 **템플릿 메소드 내부에서 공통로직으로 사용될 trigger메서드**를 위한 `정책조건 전략객체`를 생성자 주입받아서 안다. 
+    - policy는 **템플릿 메소드 내부에서 공통로직으로 사용될 trigger메서드**를 위한 `정책조건 전략객체`를 생성자 주입받아서 안다.
+- step5
+    - 전략condition은 그대로 두고, 템플렛policy -> 일반class + 전략policy
+      ![image-20220703010442315](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703010442315.png)
+      ![image-20220703121338772](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703121338772.png)
