@@ -2,7 +2,7 @@
 
 ### Diagram
 - v2
-  ![image-20220703010442315](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703010442315.png)
+  ![image-20220703213949395](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703213949395.png)
 ### Steps
 - main
     - docs > README.md(updating)
@@ -35,3 +35,8 @@
     - 전략condition은 그대로 두고, 템플렛policy -> 일반class + 전략policy
       ![image-20220703010442315](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703010442315.png)
       ![image-20220703121338772](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703121338772.png)
+
+- step6
+    - 현 정책 구성: Condition전략객체 + Policy전략객체를 사용하는 DiscountPolicy 일반클래스 
+    - Policy전략객체별로 Policy전략Factory를 추가한 뒤, factory를 policy전략객체 대신 주입한다.
+      ![image-20220703213448253](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703213448253.png)
