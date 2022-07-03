@@ -1,6 +1,6 @@
 package doctor.domain.vo;
 
-import doctor.domain.DiscountPercent;
+import doctor.domain.business.DiscountPercent;
 import java.util.Objects;
 
 public class Money {
