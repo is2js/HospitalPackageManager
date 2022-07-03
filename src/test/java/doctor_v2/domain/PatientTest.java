@@ -1,7 +1,7 @@
 package doctor_v2.domain;
 
 import static doctor_v2.fixture.Fixture.DOCTOR_0원;
-import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원;
+import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원_AMOUNT_0원_할인;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -80,12 +80,12 @@ class PatientTest {
             Description.of(String.format("%d번째 패키지", 1L)),
             Count.of(10L), LocalDate.now());
 
-        doctor.addSpecialty(SPECIALTY_구안와사_5000원);
-        doctor.addTreatment(SPECIALTY_구안와사_5000원, treatment_10개);
+        doctor.addSpecialty(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인);
+        doctor.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, treatment_10개);
         doctor.contract(reception, CommissionRate.of(10.0));
         coordinator.setReception(reception);
 
-        patient.buyPackage(coordinator, doctor, SPECIALTY_구안와사_5000원, treatment_10개, Count.of(buyCount));
+        patient.buyPackage(coordinator, doctor, SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, treatment_10개, Count.of(buyCount));
         final Package actual = patient.getPackage();
 
         assertAll(
@@ -119,14 +119,14 @@ class PatientTest {
             Description.of(String.format("%d번째 패키지", 1L)),
             Count.of(10L), LocalDate.now());
 
-        doctor.addSpecialty(SPECIALTY_구안와사_5000원);
-        doctor.addTreatment(SPECIALTY_구안와사_5000원, treatment_10개);
+        doctor.addSpecialty(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인);
+        doctor.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, treatment_10개);
         doctor.contract(reception, CommissionRate.of(10.0));
         coordinator.setReception(reception);
 
         doctor.setCoupons(patient, Count.of(couponCount));
 
-        patient.buyPackage(coordinator, doctor, SPECIALTY_구안와사_5000원, treatment_10개, Count.of(buyCount));
+        patient.buyPackage(coordinator, doctor, SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, treatment_10개, Count.of(buyCount));
         final Package actual = patient.getPackage();
 
         assertAll(
@@ -157,14 +157,14 @@ class PatientTest {
             Description.of(String.format("%d번째 패키지", 1L)),
             Count.of(10L), LocalDate.now());
 
-        doctor.addSpecialty(SPECIALTY_구안와사_5000원);
-        doctor.addTreatment(SPECIALTY_구안와사_5000원, treatment_10개);
+        doctor.addSpecialty(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인);
+        doctor.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, treatment_10개);
         doctor.contract(reception, CommissionRate.of(10.0));
         coordinator.setReception(reception);
 
         doctor.setCoupons(patient, Count.of(couponCount));
 
-        assertThatThrownBy(() -> patient.buyPackage(coordinator, doctor, SPECIALTY_구안와사_5000원, treatment_10개, Count.of(buyCount)))
+        assertThatThrownBy(() -> patient.buyPackage(coordinator, doctor, SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, treatment_10개, Count.of(buyCount)))
           .isInstanceOf(RuntimeException.class)
           .hasMessage("[ERROR] 쿠폰의 갯수가 모자랍니다.");
     }

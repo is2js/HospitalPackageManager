@@ -2,7 +2,7 @@ package doctor_v2.domain;
 
 import static doctor_v2.fixture.Fixture.DOCTOR_0원;
 import static doctor_v2.fixture.Fixture.RECEPTION_1;
-import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원;
+import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원_AMOUNT_0원_할인;
 import static doctor_v2.fixture.Fixture.TREATMENT_두번째_10개;
 import static doctor_v2.fixture.Fixture.TREATMENT_첫번째_10개;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,7 +31,7 @@ class ReceptionTest {
     @DisplayName("")
     @Test
     void calculateFee() {
-        final Money actual = RECEPTION_1.calculateFee(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개, Count.of(1L));
+        final Money actual = RECEPTION_1.calculateFee(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_10개, Count.of(1L));
 
         final Money expected = Money.of(5000.0);
         assertThat(actual).isEqualTo(expected);
@@ -42,13 +42,13 @@ class ReceptionTest {
     void sellPackage() {
         final Doctor doctor = new Doctor(Money.of(0.0));
         final Reception reception = new Reception(Money.of(0.0));
-        doctor.addSpecialty(SPECIALTY_구안와사_5000원);
-        doctor.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_첫번째_10개);
-        doctor.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
+        doctor.addSpecialty(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인);
+        doctor.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_첫번째_10개);
+        doctor.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_10개);
 
         doctor.contract(reception, CommissionRate.of(10.0));
 
-        final Package actual = reception.sellPackage(doctor, SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개,
+        final Package actual = reception.sellPackage(doctor, SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_10개,
             Count.of(1L));
 
         Assertions.assertThat(actual).isNotEqualTo(Package.EMPTY);

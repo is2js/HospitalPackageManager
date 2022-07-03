@@ -3,7 +3,7 @@ package doctor_v2.domain;
 import static doctor_v2.fixture.Fixture.DOCTOR_0원;
 import static doctor_v2.fixture.Fixture.RECEPTION_1;
 import static doctor_v2.fixture.Fixture.RECEPTION_2;
-import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원;
+import static doctor_v2.fixture.Fixture.SPECIALTY_구안와사_5000원_AMOUNT_0원_할인;
 import static doctor_v2.fixture.Fixture.TREATMENT_두번째_10개;
 import static doctor_v2.fixture.Fixture.TREATMENT_두번째_9개;
 import static doctor_v2.fixture.Fixture.TREATMENT_첫번째_10개;
@@ -11,7 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import doctor_v2.discountpolicy.AmountPolicy;
+import doctor_v2.discountpolicy.DiscountPolicy;
+import doctor_v2.discountpolicy.strategy.AmountPolicyApplier;
 import doctor_v2.vo.CommissionRate;
 import doctor_v2.vo.Count;
 import doctor_v2.vo.Description;
@@ -100,11 +101,11 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void getTreatments() {
-        DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_첫번째_10개);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
+        DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_첫번째_10개);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_10개);
 
-        final Set<Treatment> actual = DOCTOR_0원.getTreatments(SPECIALTY_구안와사_5000원);
+        final Set<Treatment> actual = DOCTOR_0원.getTreatments(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인);
 
         assertThat(actual).hasSize(2);
     }
@@ -112,11 +113,11 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void isValidMatching() {
-        DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_첫번째_10개);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
+        DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_첫번째_10개);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_10개);
 
-        final boolean actual = DOCTOR_0원.isValidMatching(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
+        final boolean actual = DOCTOR_0원.isValidMatching(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_10개);
 
         assertThat(actual).isTrue();
     }
@@ -134,11 +135,11 @@ class DoctorTest {
     @DisplayName("")
     @Test
     void sellPackage() {
-        DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개);
-        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원, TREATMENT_두번째_9개);
-        final Package actual = DOCTOR_0원.sellPackage(SPECIALTY_구안와사_5000원, TREATMENT_두번째_10개, Count.of(1L));
-        final Package expected = new Package(DOCTOR_0원, SPECIALTY_구안와사_5000원, TREATMENT_두번째_9개, Count.of(1L));
+        DOCTOR_0원.addSpecialty(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_10개);
+        DOCTOR_0원.addTreatment(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_9개);
+        final Package actual = DOCTOR_0원.sellPackage(SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_10개, Count.of(1L));
+        final Package expected = new Package(DOCTOR_0원, SPECIALTY_구안와사_5000원_AMOUNT_0원_할인, TREATMENT_두번째_9개, Count.of(1L));
 
         assertAll(
           () -> assertThat(actual).isEqualTo(expected),
@@ -158,7 +159,7 @@ class DoctorTest {
             Duration.ofDays(60),
             Money.of(5000.0),
             LocalDate.of(2022, 06, 22),
-            new AmountPolicy(Money.of(0.0)));
+            new DiscountPolicy(new AmountPolicyApplier(Money.of(0.0))));
 
         final Treatment matchedTreatment = new Treatment(
             Sequence.of(1L),
@@ -192,7 +193,8 @@ class DoctorTest {
             Title.of("구안와사"),
             Duration.ofDays(60),
             Money.of(5000.0),
-            LocalDate.of(2022, 06, 22), new AmountPolicy(Money.of(0.0)));
+            LocalDate.of(2022, 06, 22),
+            new DiscountPolicy(new AmountPolicyApplier(Money.of(0.0))));
 
         final Treatment matchedTreatment = new Treatment(
             Sequence.of(1L),
@@ -225,7 +227,8 @@ class DoctorTest {
             Title.of("구안와사"),
             Duration.ofDays(60),
             Money.of(5000.0),
-            LocalDate.of(2022, 06, 22), new AmountPolicy(Money.of(0.0)));
+            LocalDate.of(2022, 06, 22),
+            new DiscountPolicy(new AmountPolicyApplier(Money.of(0.0))));
 
         final Treatment matchedTreatment = new Treatment(
             Sequence.of(1L),

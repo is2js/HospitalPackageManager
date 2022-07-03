@@ -1,8 +1,9 @@
 package doctor_v2;
 
-import doctor_v2.discountpolicy.AmountPolicy;
 import doctor_v2.discountpolicy.DiscountPolicy;
 import doctor_v2.discountpolicy.condition.SequenceCondition;
+import doctor_v2.discountpolicy.strategy.AmountPolicyApplier;
+import doctor_v2.discountpolicy.strategy.PolicyApplier;
 import doctor_v2.domain.Coordinator;
 import doctor_v2.domain.Doctor;
 import doctor_v2.domain.Patient;
@@ -26,8 +27,9 @@ public class Main {
         ///add Specialty(MANY) to doctor(ONE)
         // A: 할인정책 action 3가지( 일정금액Amount, 일정비율Percent, 중복Overlapped, 없음None)
         // B: 할인조건 condition 3가지( Sequence선착순, Period기간, DayOfWeek요일(주말) )
-        // -> 할인정책 action policy가 condition들을 전략객체로 알고 있는다. -> Specialty는 action템페 객체 한개만 있으면 된다.
-        final DiscountPolicy discountPolicy = new AmountPolicy(Money.of(0.0));
+        // -> discontPolicy는 2가지 전략객체를 사용하는 일반클래스가 됨.
+        final PolicyApplier policyApplier = new AmountPolicyApplier(Money.of(0.0));
+        final DiscountPolicy discountPolicy = new DiscountPolicy(policyApplier);
         discountPolicy.addCondition(new SequenceCondition(Sequence.of(3L)));
 
         final Specialty specialty = new Specialty(
