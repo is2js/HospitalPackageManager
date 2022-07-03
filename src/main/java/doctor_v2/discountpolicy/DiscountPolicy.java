@@ -11,10 +11,10 @@ import java.util.Set;
 public class DiscountPolicy {
 
     private Set<DiscountCondition> conditions = new HashSet<>();
-    private PolicyApplier policyApplier;
+    private PolicyApplier factory;
 
-    public DiscountPolicy(final PolicyApplier policyApplier) {
-        this.policyApplier = policyApplier;
+    public DiscountPolicy(final PolicyApplier factory) {
+        this.factory = factory;
     }
 
     public final void addCondition(final DiscountCondition discountCondition){
@@ -25,7 +25,7 @@ public class DiscountPolicy {
         Money currentFee = fee;
         for (final DiscountCondition condition : conditions) {
             if (condition.isSatisfiedBy(treatment, count)) {
-                currentFee = policyApplier.apply(currentFee);
+                currentFee = factory.apply(currentFee);
             }
         }
 
