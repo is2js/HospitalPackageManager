@@ -41,4 +41,11 @@ public class Sequence {
     public boolean isIn(final Sequence sequence) {
         return this.number <= sequence.number;
     }
+
+    @Override
+    public String toString() {
+        return "Sequence{" +
+            "number=" + number +
+            '}';
+    }
 }

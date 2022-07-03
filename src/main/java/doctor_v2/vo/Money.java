@@ -57,6 +57,10 @@ public class Money {
         return new Money(percent.applyTo(money));
     }
 
+    public boolean isGreaterThan(final Money money) {
+        return this.money > money.money;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -74,7 +78,10 @@ public class Money {
         return Objects.hash(money);
     }
 
-    public boolean isGreaterThan(final Money money) {
-        return this.money > money.money;
+    @Override
+    public String toString() {
+        return "Money{" +
+            "money=" + money +
+            '}';
     }
 }

@@ -37,4 +37,11 @@ public class Title {
     public int hashCode() {
         return Objects.hash(title);
     }
+
+    @Override
+    public String toString() {
+        return "Title{" +
+            "title='" + title + '\'' +
+            '}';
+    }
 }

@@ -41,4 +41,11 @@ public class CommissionRate {
     public int hashCode() {
         return Objects.hash(commissionRate);
     }
+
+    @Override
+    public String toString() {
+        return "CommissionRate{" +
+            "commissionRate=" + commissionRate +
+            '}';
+    }
 }
