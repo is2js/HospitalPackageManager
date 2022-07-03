@@ -17,10 +17,6 @@ import doctor.domain.Coupon;
 import doctor.domain.Package;
 import doctor.domain.Specialty;
 import doctor.domain.Treatment;
-import doctor.domain.members.business.Coordinator;
-import doctor.domain.members.business.Doctor;
-import doctor.domain.members.business.Patient;
-import doctor.domain.members.business.Reception;
 import doctor.domain.vo.CommissionRate;
 import doctor.domain.vo.Count;
 import doctor.domain.vo.Description;
@@ -256,6 +252,6 @@ class DoctorTest {
 
         assertThatThrownBy(() -> contractedDoctor.validatePackage(patient, notAvailableCount))
             .isInstanceOf(RuntimeException.class)
-            .hasMessage(String.format("[ERROR] 남은 이용가능 횟수가 모자랍니다. 남은 횟수(%d) < 사용하려는 횟수(%d)",availableCount.getCount(), notAvailableCount.getCount()));
+            .hasMessage(String.format("[ERROR] 남은 이용가능 횟수가 모자랍니다. 남은 횟수(%d) < 사용하려는 횟수(%d)",availableCount.getValue(), notAvailableCount.getValue()));
     }
 }

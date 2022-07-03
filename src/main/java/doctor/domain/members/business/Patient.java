@@ -44,7 +44,7 @@ public class Patient {
     }
 
     public boolean hasCoupons(final Count count) {
-        return coupons.size() >= count.getCount();
+        return coupons.size() >= count.getValue();
     }
 
     public void minusCoupon(Count count) {

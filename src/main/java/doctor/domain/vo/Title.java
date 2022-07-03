@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Title {
 
-    private final String title;
+    private final String value;
 
-    public Title(final String title) {
-        validateLength(title);
-        this.title = title;
+    public Title(final String value) {
+        validateLength(value);
+        this.value = value;
     }
 
     public static Title of(final String title) {
@@ -30,18 +30,18 @@ public class Title {
             return false;
         }
         final Title title1 = (Title) o;
-        return Objects.equals(title, title1.title);
+        return Objects.equals(value, title1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
         return "Title{" +
-            "title='" + title + '\'' +
+            "title='" + value + '\'' +
             '}';
     }
 }

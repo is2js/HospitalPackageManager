@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class CommissionRate {
 
-    private final Double commissionRate;
+    private final Double value;
 
-    private CommissionRate(final Double commissionRate) {
-        validateRange(commissionRate);
-        this.commissionRate = commissionRate;
+    private CommissionRate(final Double value) {
+        validateRange(value);
+        this.value = value;
     }
 
     public static CommissionRate of(final Double commissionRate) {
@@ -22,7 +22,7 @@ public class CommissionRate {
     }
 
     public double applyTo(final Double money) {
-        return money * (commissionRate / 100);
+        return money * (value / 100);
     }
 
     @Override
@@ -34,18 +34,18 @@ public class CommissionRate {
             return false;
         }
         final CommissionRate that = (CommissionRate) o;
-        return Objects.equals(commissionRate, that.commissionRate);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(commissionRate);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
         return "CommissionRate{" +
-            "commissionRate=" + commissionRate +
+            "commissionRate=" + value +
             '}';
     }
 }

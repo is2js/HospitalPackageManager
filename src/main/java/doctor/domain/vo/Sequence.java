@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Sequence {
 
-    private final Long number;
+    private final Long value;
 
-    private Sequence(final Long number) {
-        validateNotNegative(number);
-        this.number = number;
+    private Sequence(final Long value) {
+        validateNotNegative(value);
+        this.value = value;
     }
 
     public static Sequence of(final Long number) {
@@ -21,6 +21,10 @@ public class Sequence {
         }
     }
 
+    public boolean isIn(final Sequence sequence) {
+        return this.value <= sequence.value;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -30,22 +34,18 @@ public class Sequence {
             return false;
         }
         final Sequence sequence = (Sequence) o;
-        return Objects.equals(number, sequence.number);
+        return Objects.equals(value, sequence.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number);
-    }
-
-    public boolean isIn(final Sequence sequence) {
-        return this.number <= sequence.number;
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
         return "Sequence{" +
-            "number=" + number +
+            "number=" + value +
             '}';
     }
 }

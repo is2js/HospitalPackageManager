@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Description {
 
-    private final String description;
+    private final String value;
 
-    private Description(final String description) {
-        validateLength(description);
-        this.description = description;
+    private Description(final String value) {
+        validateLength(value);
+        this.value = value;
     }
 
     public static Description of(final String description) {
@@ -30,18 +30,18 @@ public class Description {
             return false;
         }
         final Description that = (Description) o;
-        return Objects.equals(description, that.description);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
         return "Description{" +
-            "description='" + description + '\'' +
+            "description='" + value + '\'' +
             '}';
     }
 }

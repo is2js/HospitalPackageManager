@@ -109,7 +109,7 @@ public class Doctor {
 
 
         if (!packageItem.isCountGreaterThanOrEqualTo(count)) {
-            throw new RuntimeException(String.format("[ERROR] 남은 이용가능 횟수가 모자랍니다. 남은 횟수(%d) < 사용하려는 횟수(%d)",packageItem.getCount().getCount(), count.getCount()));
+            throw new RuntimeException(String.format("[ERROR] 남은 이용가능 횟수가 모자랍니다. 남은 횟수(%d) < 사용하려는 횟수(%d)",packageItem.getCount().getValue(), count.getValue()));
         }
         return true;
     }

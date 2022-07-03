@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Count {
 
     public static final Count EMPTY = new Count(0L);
-    private final Long count;
+    private final Long value;
 
-    private Count(final Long count) {
-        validateNotNegative(count);
-        this.count = count;
+    private Count(final Long value) {
+        validateNotNegative(value);
+        this.value = value;
     }
 
     public static Count of(final Long count) {
@@ -23,26 +23,26 @@ public class Count {
     }
 
     public boolean isPositive() {
-        if (count <= 0) {
+        if (value <= 0) {
             return false;
         }
         return true;
     }
 
     public Count decrease() {
-        return new Count(count - 1);
+        return new Count(value - 1);
     }
 
     public boolean isGreaterThanOrEqualTo(final Count count) {
-        return this.count >= count.count;
+        return this.value >= count.value;
     }
 
     public Count minus(final Count count) {
-        return new Count(this.count - count.count);
+        return new Count(this.value - count.value);
     }
 
-    public Long getCount() {
-        return count;
+    public Long getValue() {
+        return value;
     }
 
     @Override
@@ -54,18 +54,18 @@ public class Count {
             return false;
         }
         final Count count1 = (Count) o;
-        return Objects.equals(count, count1.count);
+        return Objects.equals(value, count1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(count);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
         return "Count{" +
-            "count=" + count +
+            "count=" + value +
             '}';
     }
 }

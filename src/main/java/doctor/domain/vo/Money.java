@@ -7,11 +7,11 @@ public class Money {
 
     public static final Money ZERO = new Money(0.0);
 
-    private final Double money;
+    private final Double value;
 
-    private Money(final Double money) {
-        validateNotNegative(money);
-        this.money = money;
+    private Money(final Double value) {
+        validateNotNegative(value);
+        this.value = value;
     }
 
     public static Money of(final Double money) {
@@ -25,40 +25,40 @@ public class Money {
     }
 
     public boolean isGreaterThanOrEqualTo(final Money fee) {
-        return money >= fee.money;
+        return value >= fee.value;
     }
 
     public boolean isLessThan(final Money fee) {
-        return money < fee.money;
+        return value < fee.value;
     }
 
     public Money minus(final Money fee) {
-        return new Money(money - fee.money);
+        return new Money(value - fee.value);
     }
 
     public Money multi(Count count) {
         Double sum = 0.0;
         while (count.isPositive()) {
-            sum += money;
+            sum += value;
             count = count.decrease();
         }
         return new Money(sum);
     }
 
     public Money multiRate(final CommissionRate commissionRate) {
-        return new Money(commissionRate.applyTo(money));
+        return new Money(commissionRate.applyTo(value));
     }
 
     public Money plus(final Money money) {
-        return new Money(this.money + money.money);
+        return new Money(this.value + money.value);
     }
 
     public Money multiPercent(final DiscountPercent percent) {
-        return new Money(percent.applyTo(money));
+        return new Money(percent.applyTo(value));
     }
 
     public boolean isGreaterThan(final Money money) {
-        return this.money > money.money;
+        return this.value > money.value;
     }
 
     @Override
@@ -70,18 +70,18 @@ public class Money {
             return false;
         }
         final Money money1 = (Money) o;
-        return Objects.equals(money, money1.money);
+        return Objects.equals(value, money1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(money);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
         return "Money{" +
-            "money=" + money +
+            "money=" + value +
             '}';
     }
 }
