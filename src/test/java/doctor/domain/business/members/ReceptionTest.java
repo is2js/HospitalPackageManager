@@ -1,4 +1,4 @@
-package doctor.domain.members;
+package doctor.domain.business.members;
 
 import static doctor.fixture.Fixture.DOCTOR_0원;
 import static doctor.fixture.Fixture.RECEPTION_1;
@@ -8,8 +8,8 @@ import static doctor.fixture.Fixture.TREATMENT_첫번째_10개;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import doctor.domain.business.Package;
-import doctor.domain.members.Doctor;
-import doctor.domain.members.Reception;
+import doctor.domain.business.members.Doctor;
+import doctor.domain.business.members.Reception;
 import doctor.domain.vo.CommissionRate;
 import doctor.domain.vo.Count;
 import doctor.domain.vo.Money;

@@ -2,9 +2,9 @@ package doctor.fixture;
 
 import doctor.domain.business.discountpolicy.DiscountPolicy;
 import doctor.domain.business.discountpolicy.strategy.AmountPolicyApplierFactory;
-import doctor.domain.members.Doctor;
-import doctor.domain.members.Patient;
-import doctor.domain.members.Reception;
+import doctor.domain.business.members.Doctor;
+import doctor.domain.business.members.Patient;
+import doctor.domain.business.members.Reception;
 import doctor.domain.business.Specialty;
 import doctor.domain.business.Treatment;
 import doctor.domain.vo.Count;

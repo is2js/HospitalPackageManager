@@ -1,6 +1,6 @@
 package doctor.domain.business;
 
-import doctor.domain.members.Doctor;
+import doctor.domain.business.members.Doctor;
 import doctor.domain.vo.Count;
 import java.util.Objects;
 

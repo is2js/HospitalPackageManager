@@ -1,9 +1,9 @@
-package doctor.domain.members;
+package doctor.domain.business.members;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import doctor.domain.members.Coordinator;
-import doctor.domain.members.Reception;
+import doctor.domain.business.members.Coordinator;
+import doctor.domain.business.members.Reception;
 import doctor.domain.vo.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

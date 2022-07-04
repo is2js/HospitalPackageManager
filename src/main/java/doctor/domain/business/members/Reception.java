@@ -1,4 +1,4 @@
-package doctor.domain.members;
+package doctor.domain.business.members;
 
 import doctor.domain.business.Package;
 import doctor.domain.business.Specialty;

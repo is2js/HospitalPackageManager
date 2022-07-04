@@ -1,4 +1,4 @@
-package doctor.domain.members;
+package doctor.domain.business.members;
 
 import static doctor.fixture.Fixture.DOCTOR_0원;
 import static doctor.fixture.Fixture.SPECIALTY_구안와사_5000원_AMOUNT_0원_할인;
@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import doctor.domain.business.Coupon;
 import doctor.domain.business.Package;
 import doctor.domain.business.Treatment;
-import doctor.domain.members.Coordinator;
-import doctor.domain.members.Doctor;
-import doctor.domain.members.Patient;
-import doctor.domain.members.Reception;
+import doctor.domain.business.members.Coordinator;
+import doctor.domain.business.members.Doctor;
+import doctor.domain.business.members.Patient;
+import doctor.domain.business.members.Reception;
 import doctor.domain.vo.CommissionRate;
 import doctor.domain.vo.Count;
 import doctor.domain.vo.Description;
