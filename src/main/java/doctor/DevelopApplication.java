@@ -1,5 +1,9 @@
 package doctor;
 
+import doctor.domain.develop.paper.TxPackagePaper;
+import doctor.domain.develop.members.Director;
+import doctor.domain.develop.paper.TxRoomPaper;
+
 public class DevelopApplication {
     public static void main(String[] args) {
 
@@ -12,8 +16,8 @@ public class DevelopApplication {
         // --> MemoryRepository는 static map을 사용하여, Id를 사용하고, 초기데이터도 미리 만들어 둘 순 있지만,
         //     Director는 db의 저장이 아닌 비지니스로직에 사용하는 데이터를, 현재 인스턴스만 알고서 사용하기 때문에, static이 아닌 것으로 저장한다.
         //    객체 저장시, CRUD를 하기 위해, map에 key값으로 String을 같이 저장한다.
-        director.addProjectPaper("구완와사", new TxPackagePapaer());
-        director.addProjectPapaer("백구한의원", new TxRoomPaper());
+        director.addProjectPaper("구완와사", new TxPackagePaper());
+        director.addProjectPaper("백구한의원", new TxRoomPaper());
 
         // director는 내부에 저장한 Paper들 중 1개를 name로 찾아, programmer들에게 만들라고 시킨다.
         // -> 프로그래머들은 director의 하위도메인이라, 내부에서 생성하여 일을 시킨다.
