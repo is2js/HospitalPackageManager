@@ -32,14 +32,20 @@ public class Director {
         if (projectPaper instanceof TxPackagePaper) {
             final TxPackagePaper txPackagePaper = (TxPackagePaper) projectPaper;
 
-            final FrontEnd frontEnd = new FrontEnd<TxPackagePaper>() {
+            final FrontEnd<TxPackagePaper> frontEnd = new FrontEnd<>() {
                 @Override
                 protected void setData(final TxPackagePaper projectPaper) {
-                    this.language =txPackagePaper.getFrontEndLanguage();
+                    this.language = txPackagePaper.getFrontEndLanguage();
                 }
             };
-            final BackEnd backEnd = new BackEnd();
-            
+            final BackEnd<TxPackagePaper> backEnd = new BackEnd<>() {
+                @Override
+                protected void setData(final TxPackagePaper projectPaper) {
+                    this.language = txPackagePaper.getBackEndLanguage();
+                    this.server = txPackagePaper.getServer();
+                }
+            };
+
             txPackagePaper.setFrontEndProgrammer(frontEnd);
             txPackagePaper.setBackEndProgrammer(backEnd);
 
@@ -55,7 +61,7 @@ public class Director {
             final FrontEnd<TxRoomPaper> frontEnd = new FrontEnd<>() {
                 @Override
                 protected void setData(final TxRoomPaper projectPaper) {
-                    this.language =txRoomPaper.getLanguage();
+                    this.language = txRoomPaper.getLanguage();
                     this.library = txRoomPaper.getLibrary();
                 }
             };

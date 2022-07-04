@@ -4,28 +4,19 @@ import doctor.domain.develop.Language;
 import doctor.domain.develop.Program;
 import doctor.domain.develop.Server;
 import doctor.domain.develop.paper.ProjectPaper;
-import doctor.domain.develop.paper.TxPackagePaper;
-import doctor.domain.develop.paper.TxRoomPaper;
 
-public class BackEnd implements Programmer {
+public abstract class BackEnd<T extends ProjectPaper> implements Programmer {
 
-    private Server server;
-    private Language language;
+    protected Server server;
+    protected Language language;
 
-    public Program makeProgram(final ProjectPaper projectPaper) {
-        if (projectPaper instanceof TxPackagePaper) {
-            final TxPackagePaper txPackagePaper = (TxPackagePaper) projectPaper;
+    public Program makeProgram(final T projectPaper) {
+        setData(projectPaper);
 
-            this.language = txPackagePaper.getBackEndLanguage();
-            this.server = txPackagePaper.getServer();
-        }
-
-        if (projectPaper instanceof TxRoomPaper) {
-            final TxRoomPaper txRoomPaper = (TxRoomPaper) projectPaper;
-//            txRoomPaper.
-        }
         return createBackEndProgram();
     }
+
+    protected abstract void setData(final T projectPaper);
 
     private Program createBackEndProgram() {
         return new Program();
