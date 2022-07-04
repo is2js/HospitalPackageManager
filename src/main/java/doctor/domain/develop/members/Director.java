@@ -9,13 +9,23 @@ public class Director {
     private Map<String, ProjectPaper> projectPapers = new HashMap<>();
 
     public void addProjectPaper(final String paperName, final ProjectPaper projectPaper) {
-        if (projectPapers.containsKey(paperName)) {
-            throw new RuntimeException("[ERROR] 이미 수행에 포함된 paperName입니다.");
-        }
+        validateDuplicatePaper(paperName);
         this.projectPapers.put(paperName, projectPaper);
     }
 
+    private void validateDuplicatePaper(final String paperName) {
+        if (projectPapers.containsKey(paperName)) {
+            throw new RuntimeException("[ERROR] 이미 수행에 포함된 paperName입니다.");
+        }
+    }
+
     public void runProjectPaper(final String paperName) {
-        throw new UnsupportedOperationException("Director#runProjectPaper not write.");
+        validateExistPaper(paperName);
+    }
+
+    private void validateExistPaper(final String paperName) {
+        if (!projectPapers.containsKey(paperName)) {
+            throw new RuntimeException("[ERROR] 현재 수행에 포함된 paperName이 아닙니다.");
+        }
     }
 }
