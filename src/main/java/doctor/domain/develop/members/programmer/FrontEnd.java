@@ -7,8 +7,8 @@ import doctor.domain.develop.paper.ProjectPaper;
 
 public abstract class FrontEnd<T extends ProjectPaper> implements Programmer {
 
-    private Library library;
-    private Language language;
+    protected Library library;
+    protected Language language;
 
     public Program makeProgram(final T projectPaper) {
         setData(projectPaper);
@@ -16,10 +16,6 @@ public abstract class FrontEnd<T extends ProjectPaper> implements Programmer {
         return createFrontEndProgram();
     }
 
-//        this.language =txPackagePaper.getFrontEndLanguage();
-//
-//        this.language =txRoomPaper.getLanguage();
-//        this.library =txRoomPaper.getLibrary();
     protected abstract void setData(final T projectPaper);
 
     private Program createFrontEndProgram() {
