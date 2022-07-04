@@ -13,9 +13,9 @@ class DirectorTest {
     @Test
     void addProjectPaper() {
         final Director director = new Director();
-        director.addProjectPaper("기획서1", new TxPackagePaper());
+        director.addProjectPaper("기획서1", new TxPackagePaper("AWS", "java", "js"));
 
-        assertThatThrownBy(() -> director.addProjectPaper("기획서1", new TxRoomPaper()))
+        assertThatThrownBy(() -> director.addProjectPaper("기획서1", new TxRoomPaper("VueJS", "js")))
           .isInstanceOf(RuntimeException.class)
           .hasMessage("[ERROR] 이미 수행에 포함된 paperName입니다.");
     }
@@ -24,7 +24,7 @@ class DirectorTest {
     @Test
     void runProjectPaper() {
         final Director director = new Director();
-        director.addProjectPaper("기획서1", new TxPackagePaper());
+        director.addProjectPaper("기획서1", new TxPackagePaper("AWS", "java", "js"));
 
         assertThatThrownBy(() -> director.runProjectPaper("기획서2"))
             .isInstanceOf(RuntimeException.class)
