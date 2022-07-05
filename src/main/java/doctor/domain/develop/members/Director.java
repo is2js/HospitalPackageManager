@@ -32,7 +32,7 @@ public class Director {
         if (projectPaper instanceof TxPackagePaper) {
             final TxPackagePaper txPackagePaper = (TxPackagePaper) projectPaper;
 
-            final FrontEnd frontEnd = new FrontEnd<TxPackagePaper>() {
+            final FrontEnd<TxPackagePaper> frontEnd = new FrontEnd<>() {
                 @Override
                 protected void setData(final TxPackagePaper projectPaper) {
                     this.language = txPackagePaper.getFrontEndLanguage();
