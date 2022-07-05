@@ -8,7 +8,7 @@ public class TxRoomPaper implements ProjectPaper{
 
     private final Library library;
     private final Language language;
-    private Programmer<ProjectPaper> programmer;
+    private Programmer programmer;
 
     public TxRoomPaper(final String library, final String language) {
         this.library = new Library(library);

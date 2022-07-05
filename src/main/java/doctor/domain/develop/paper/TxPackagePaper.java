@@ -4,14 +4,15 @@ import doctor.domain.develop.Language;
 import doctor.domain.develop.Server;
 import doctor.domain.develop.members.programmer.BackEnd;
 import doctor.domain.develop.members.programmer.FrontEnd;
+import doctor.domain.develop.members.programmer.Programmer;
 
 public class TxPackagePaper implements ProjectPaper{
 
     private final Server server;
     private final Language backEndLanguage;
     private final Language frontEndLanguage;
-    private FrontEnd frontEnd;
-    private BackEnd backEnd;
+    private Programmer frontEnd;
+    private Programmer backEnd;
 
     public TxPackagePaper(final String server, final String backEndLanguage, final String frontEndLanguage) {
         this.server = new Server(server);
@@ -39,11 +40,11 @@ public class TxPackagePaper implements ProjectPaper{
         return frontEndLanguage;
     }
 
-    public FrontEnd getFrontEnd() {
+    public Programmer getFrontEnd() {
         return frontEnd;
     }
 
-    public BackEnd getBackEnd() {
+    public Programmer getBackEnd() {
         return backEnd;
     }
 }
