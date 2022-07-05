@@ -1,8 +1,11 @@
 ## 병원 패키지 관리 시스템 설계해보기
 
 ### Diagram
-- v2
-  ![image-20220703213949395](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703213949395.png)
+- doctor 패키지 관련
+    ![image-20220703213949395](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703213949395.png)
+- delevelop 부서 관련
+    ![image-20220705184019320](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220705184019320.png)
+    ![image-20220705184728692](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220705184728692.png)
 ### Steps
 - main
     - docs > README.md(updating)
@@ -41,3 +44,7 @@
     - Policy전략객체별로 Policy전략Factory를 추가한 뒤, factory를 policy전략객체 대신 주입한다.
       ![image-20220703213448253](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703213448253.png)
       ![image-20220703225131663](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220703225131663.png)
+
+- develop
+1. 아래와 같이 프로젝트를 착수하도록 설계한다.
+    ![image-20220705184728692](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220705184728692.png)
