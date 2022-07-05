@@ -22,8 +22,8 @@ public class TxRoomPaper implements ProjectPaper{
         final FrontEnd<TxRoomPaper> frontEnd = new FrontEnd<>() {
             @Override
             protected void setData(final TxRoomPaper projectPaper) {
-                this.language = getLanguage();
-                this.library = getLibrary();
+                this.language = TxRoomPaper.this.language;
+                this.library = TxRoomPaper.this.library;
             }
         };
 
@@ -35,17 +35,5 @@ public class TxRoomPaper implements ProjectPaper{
 
     public void setProgrammer(final Programmer programmer) {
         this.programmer = programmer;
-    }
-
-    public Library getLibrary() {
-        return library;
-    }
-
-    public Language getLanguage() {
-        return language;
-    }
-
-    public Programmer<ProjectPaper> getProgrammer() {
-        return programmer;
     }
 }

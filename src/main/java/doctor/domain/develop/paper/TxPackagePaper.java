@@ -21,47 +21,20 @@ public class TxPackagePaper implements ProjectPaper {
         this.frontEndLanguage = new Language(frontEndLanguage);
     }
 
-    public void setFrontEndProgrammer(final FrontEnd frontEnd) {
-        this.frontEnd = frontEnd;
-    }
-
-    public void setBackEndProgrammer(final BackEnd backEnd) {
-        this.backEnd = backEnd;
-    }
-
-    public Server getServer() {
-        return server;
-    }
-
-    public Language getBackEndLanguage() {
-        return backEndLanguage;
-    }
-
-    public Language getFrontEndLanguage() {
-        return frontEndLanguage;
-    }
-
-    public Programmer getFrontEnd() {
-        return frontEnd;
-    }
-
-    public Programmer getBackEnd() {
-        return backEnd;
-    }
-
     @Override
     public Program[] makeProgram() {
         final FrontEnd<TxPackagePaper> frontEnd = new FrontEnd<>() {
             @Override
             protected void setData(final TxPackagePaper projectPaper) {
-                this.language = getFrontEndLanguage();
+                this.language = frontEndLanguage;
             }
         };
+
         final BackEnd<TxPackagePaper> backEnd = new BackEnd<>() {
             @Override
             protected void setData(final TxPackagePaper projectPaper) {
-                this.language = getBackEndLanguage();
-                this.server = getServer();
+                this.language = backEndLanguage;
+                this.server = TxPackagePaper.this.server;
             }
         };
 
@@ -73,4 +46,13 @@ public class TxPackagePaper implements ProjectPaper {
 
         return new Program[]{client, server};
     }
+
+    public void setFrontEndProgrammer(final FrontEnd frontEnd) {
+        this.frontEnd = frontEnd;
+    }
+
+    public void setBackEndProgrammer(final BackEnd backEnd) {
+        this.backEnd = backEnd;
+    }
+
 }
