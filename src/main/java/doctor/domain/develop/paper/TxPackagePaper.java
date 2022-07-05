@@ -1,12 +1,13 @@
 package doctor.domain.develop.paper;
 
 import doctor.domain.develop.Language;
+import doctor.domain.develop.Program;
 import doctor.domain.develop.Server;
 import doctor.domain.develop.members.programmer.BackEnd;
 import doctor.domain.develop.members.programmer.FrontEnd;
 import doctor.domain.develop.members.programmer.Programmer;
 
-public class TxPackagePaper implements ProjectPaper{
+public class TxPackagePaper implements ProjectPaper {
 
     private final Server server;
     private final Language backEndLanguage;
@@ -46,5 +47,30 @@ public class TxPackagePaper implements ProjectPaper{
 
     public Programmer getBackEnd() {
         return backEnd;
+    }
+
+    @Override
+    public Program[] makeProgram() {
+        final FrontEnd<TxPackagePaper> frontEnd = new FrontEnd<>() {
+            @Override
+            protected void setData(final TxPackagePaper projectPaper) {
+                this.language = getFrontEndLanguage();
+            }
+        };
+        final BackEnd<TxPackagePaper> backEnd = new BackEnd<>() {
+            @Override
+            protected void setData(final TxPackagePaper projectPaper) {
+                this.language = getBackEndLanguage();
+                this.server = getServer();
+            }
+        };
+
+        setFrontEndProgrammer(frontEnd);
+        setBackEndProgrammer(backEnd);
+
+        final Program client = frontEnd.makeProgram(this);
+        final Program server = backEnd.makeProgram(this);
+
+        return new Program[]{client, server};
     }
 }

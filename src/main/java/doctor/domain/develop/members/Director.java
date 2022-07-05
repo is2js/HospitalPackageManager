@@ -1,11 +1,7 @@
 package doctor.domain.develop.members;
 
 import doctor.domain.develop.Program;
-import doctor.domain.develop.members.programmer.BackEnd;
-import doctor.domain.develop.members.programmer.FrontEnd;
 import doctor.domain.develop.paper.ProjectPaper;
-import doctor.domain.develop.paper.TxPackagePaper;
-import doctor.domain.develop.paper.TxRoomPaper;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,49 +25,9 @@ public class Director {
 
         final ProjectPaper projectPaper = projectPapers.get(paperName);
 
-        if (projectPaper instanceof TxPackagePaper) {
-            final TxPackagePaper txPackagePaper = (TxPackagePaper) projectPaper;
+        final Program[] programs = projectPaper.makeProgram();
 
-            final FrontEnd<TxPackagePaper> frontEnd = new FrontEnd<>() {
-                @Override
-                protected void setData(final TxPackagePaper projectPaper) {
-                    this.language = txPackagePaper.getFrontEndLanguage();
-                }
-            };
-            final BackEnd<TxPackagePaper> backEnd = new BackEnd<>() {
-                @Override
-                protected void setData(final TxPackagePaper projectPaper) {
-                    this.language = txPackagePaper.getBackEndLanguage();
-                    this.server = txPackagePaper.getServer();
-                }
-            };
-
-            txPackagePaper.setFrontEndProgrammer(frontEnd);
-            txPackagePaper.setBackEndProgrammer(backEnd);
-
-            final Program client = frontEnd.makeProgram(txPackagePaper);
-            final Program server = backEnd.makeProgram(txPackagePaper);
-
-            deploy(paperName, client, server);
-        }
-
-        if (projectPaper instanceof TxRoomPaper) {
-            final TxRoomPaper txRoomPaper = (TxRoomPaper) projectPaper;
-
-            final FrontEnd<TxRoomPaper> frontEnd = new FrontEnd<>() {
-                @Override
-                protected void setData(final TxRoomPaper projectPaper) {
-                    this.language = txRoomPaper.getLanguage();
-                    this.library = txRoomPaper.getLibrary();
-                }
-            };
-
-            txRoomPaper.setProgrammer(frontEnd);
-
-            final Program client = frontEnd.makeProgram(txRoomPaper);
-
-            deploy(paperName, client);
-        }
+        deploy(paperName, programs);
     }
 
     private void validateExistPaper(final String paperName) {
