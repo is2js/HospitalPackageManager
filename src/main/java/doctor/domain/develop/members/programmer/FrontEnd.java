@@ -11,6 +11,11 @@ public abstract class FrontEnd<T extends ProjectPaper> extends Programmer<T>{
     protected Language language;
 
     @Override
+    protected void setData(final T projectPaper) {
+        throw new UnsupportedOperationException("FrontEnd#setData not implemented.");
+    }
+
+    @Override
     protected Program createProgram() {
         // 추후  Server와 Language로 만든 백엔드프로그램을 내놔야함.
         return new Program();
