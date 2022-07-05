@@ -1,13 +1,12 @@
 package doctor.domain.develop.paper;
 
 import doctor.domain.develop.Language;
-import doctor.domain.develop.Program;
 import doctor.domain.develop.Server;
 import doctor.domain.develop.members.programmer.BackEnd;
 import doctor.domain.develop.members.programmer.FrontEnd;
 import doctor.domain.develop.members.programmer.Programmer;
 
-public class TxPackagePaper implements ProjectPaper {
+public abstract class TxPackagePaper implements ProjectPaper {
 
     private final Server server;
     private final Language backEndLanguage;
@@ -21,32 +20,6 @@ public class TxPackagePaper implements ProjectPaper {
         this.frontEndLanguage = new Language(frontEndLanguage);
     }
 
-    @Override
-    public Program[] makeProgram() {
-        final FrontEnd<TxPackagePaper> frontEnd = new FrontEnd<>() {
-            @Override
-            protected void setData(final TxPackagePaper projectPaper) {
-                this.language = frontEndLanguage;
-            }
-        };
-
-        final BackEnd<TxPackagePaper> backEnd = new BackEnd<>() {
-            @Override
-            protected void setData(final TxPackagePaper projectPaper) {
-                this.language = backEndLanguage;
-                this.server = TxPackagePaper.this.server;
-            }
-        };
-
-        setFrontEndProgrammer(frontEnd);
-        setBackEndProgrammer(backEnd);
-
-        final Program client = frontEnd.makeProgram(this);
-        final Program server = backEnd.makeProgram(this);
-
-        return new Program[]{client, server};
-    }
-
     public void setFrontEndProgrammer(final FrontEnd frontEnd) {
         this.frontEnd = frontEnd;
     }
@@ -55,4 +28,23 @@ public class TxPackagePaper implements ProjectPaper {
         this.backEnd = backEnd;
     }
 
+    public Server getServer() {
+        return server;
+    }
+
+    public Language getBackEndLanguage() {
+        return backEndLanguage;
+    }
+
+    public Language getFrontEndLanguage() {
+        return frontEndLanguage;
+    }
+
+    public Programmer getFrontEnd() {
+        return frontEnd;
+    }
+
+    public Programmer getBackEnd() {
+        return backEnd;
+    }
 }
