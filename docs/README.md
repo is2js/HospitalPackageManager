@@ -11,7 +11,7 @@
 - [SIDE)특정객체에 정책적용 • Jul 1, 2022](https://blog.chojaeseong.com/java/%EC%9A%B0%ED%85%8C%EC%BD%94/oop/object/policy/side/hospital/2022/07/01/(side)%ED%8A%B9%EC%A0%95%EA%B0%9D%EC%B2%B4%EC%97%90-%EC%A0%95%EC%B1%85%EC%A0%81%EC%9A%A9.html)
 - [SIDE)계약, 거래의 트랜잭션 관계 맺기 • Jul 3, 2022](https://blog.chojaeseong.com/java/%EC%9A%B0%ED%85%8C%EC%BD%94/oop/object/policy/side/hospital/transaction/2022/07/03/(side)%EA%B3%84%EC%95%BD,-%EA%B1%B0%EB%9E%98%EC%9D%98-%ED%95%98%EB%8A%94-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EA%B4%80%EA%B3%84.html)
 - [SIDE)추상체X추상체 관계에서 템플릿,전략패턴 적용 • Jul 5, 2022](https://blog.chojaeseong.com/java/%EC%9A%B0%ED%85%8C%EC%BD%94/oop/object/relationship/side/hospital/templatemethod/strategy/2022/07/05/(side)%EC%B6%94%EC%83%81%EC%B2%B4X%EC%B6%94%EC%83%81%EC%B2%B4-%ED%85%9C%ED%94%8C%EB%A6%BF_%EC%A0%84%EB%9E%B5-%EC%A0%81%EC%9A%A9.html)
-
+- [SIDE)정책 누적 적용하기(메서드체이닝) • Jul 13, 2022](https://blog.chojaeseong.com/java/%EC%9A%B0%ED%85%8C%EC%BD%94/oop/object/policy/side/hospital/2022/07/13/(side)%EC%97%AC%EB%9F%AC-%EC%A0%95%EC%B1%85%EC%9D%84-%EB%88%84%EC%A0%81-%EC%A0%81%EC%9A%A9.html)
 ### Steps
 - main
     - docs > README.md(updating)
@@ -54,3 +54,5 @@
 - develop
 1. 아래와 같이 프로젝트를 착수하도록 설계한다.
     ![image-20220705184728692](https://raw.githubusercontent.com/is3js/screenshots/main/image-20220705184728692.png)
+
+2. 여러정책들을 누적 적용한다.
